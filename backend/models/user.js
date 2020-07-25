@@ -27,10 +27,10 @@ const userSchema = mongoose.Schema({
         default: Date.now()
         },
         bio: String,
-        // posts: [{
-        // type: mongoose.Scehma.ObjectId,
-        // ref: 'Post'
-        // }]
+        posts: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Post'
+        }]
 });
 
 const User = mongoose.model('User', userSchema);

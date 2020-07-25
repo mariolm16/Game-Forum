@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user', routes.user),
+app.use('/post', routes.post)
 
 app.listen(4000, () => {
     console.log('Hello Mario :)...')

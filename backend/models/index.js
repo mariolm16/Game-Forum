@@ -24,3 +24,6 @@ mongoose.connection.on('error', (err) => {
 
 const User = require('./user');
 exports.User = User;
+
+const Post = require('./post');
+exports.Post = Post;
