@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 
-const commentSchema = mongoose.Schema({
-    comment: {
-    type: String,
-    required: true
-    }
-})
     
-    const postSchema = mongoose.Schema({
+const postSchema = mongoose.Schema({
     title: {
     type: String,
     required: true,
@@ -24,7 +18,14 @@ const commentSchema = mongoose.Schema({
     type: String,
     required: true
     },
-    comments: [commentSchema]
+   _creator: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    },
+    _comments: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Comment'
+    }]
     });
 
     const Post = mongoose.model('Post', postSchema);

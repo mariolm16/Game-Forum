@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost/backend';
+const connectionString = 'mongodb://localhost:27017/backend';
 
 mongoose.connect(connectionString, {useNewUrlParser: true,
                                 useUnifiedTopology: true,
@@ -27,3 +27,6 @@ exports.User = User;
 
 const Post = require('./post');
 exports.Post = Post;
+
+const Comment = require('./comment');
+exports.Comment= Comment;

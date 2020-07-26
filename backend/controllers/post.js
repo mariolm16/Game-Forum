@@ -37,7 +37,10 @@ const showPost = (req, res) => {
 }
 
 const allPosts = (req, res) => {
-    Post.find({}, (err, foundPosts) => {
+    Post.find({}) 
+    .populate('_creator', 'username')
+    .exec((err, foundPosts) => {
+        
         if(err){
             return res.status(500).json(err);
         }
@@ -64,6 +67,10 @@ const editPost = (req, res) => {
         console.log(updatedPost);
         res.status(200).json(updatedPost);
     })
+}
+
+const addComment = (req, res) => {
+    
 }
 
 module.exports = {

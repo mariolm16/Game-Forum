@@ -7,30 +7,28 @@ const userSchema = mongoose.Schema({
         },
         email: {
         type:String,
+        unique: [true, 'This email is already in use. Please log in or use another email'],
         required: true
         },
         image: {
-        type: String
+        type: String,
+        default: 'https://i.pinimg.com/236x/ba/e9/bb/bae9bbde8dcefca422aa14d9e16e11bb.jpg',
         },
         username: {
         type: String,
-        unique: true,
+        unique: [true, 'This username has alrady been chosen, please select another'],
         required: true
         },
         password: {
         type: String,
         required: true,
-        minlength: 3,
+        minlength: [3, 'Hi, please use a longer password...']
         },
         created: {
         type:Date,
         default: Date.now()
         },
         bio: String,
-        posts: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Post'
-        }]
 });
 
 const User = mongoose.model('User', userSchema);
