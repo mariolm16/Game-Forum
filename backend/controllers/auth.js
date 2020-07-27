@@ -52,7 +52,7 @@ const login = (req, res) => {
                     const token = jwt.sign(
                         {
                             username: foundUser.username,
-                            id: foundUser.id
+                            id: foundUser._id
                         },
                         process.env.JWT_SECRET,
                         {
@@ -60,6 +60,7 @@ const login = (req, res) => {
                         }
                     )
                     console.log(foundUser);
+                    
                     res.status(200).json({
                         "token" : token
                     });

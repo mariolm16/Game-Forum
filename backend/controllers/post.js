@@ -41,6 +41,7 @@ const showPost = (req, res) => {
 const allPosts = (req, res) => {
     Post.find({}) 
     .populate('_creator', 'username')
+    .populate('_comments', 'body')
     .exec((err, foundPosts) => {
         
         if(err){

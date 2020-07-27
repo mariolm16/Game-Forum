@@ -17,12 +17,11 @@ app.use(bodyParser.json());
 const verifyToken = (req, res, next) => {
     let token = req.headers['authorization'];
     if(token){
-        token = token.substring(constants.BEARER_START_INDEX) //remove string Bearer from the token
+        token = token.substring(7)
     }
-
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
         if(err || !decodedUser){
-            return res.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
+            return res.status(401).send(`ERROR: ${err}`);
         }
         req.user = decodedUser;
 
@@ -32,12 +31,16 @@ const verifyToken = (req, res, next) => {
 
 app.use('/auth', routes.auth);
 
-app.use('/user', routes.user),
-app.use('/post', routes.post),
-app.use('/comment', routes.comment)
 
+// app.use('/post', routes.post),
+app.use('/comment', routes.comment)
+app.use('/auth/verify', verifyToken, routes.auth);
 app.use('/user', verifyToken, routes.user);
 app.use('/post', verifyToken, routes.post);
+
+
+
+app.use('/post/all', routes.post);
 
 app.listen(4000, () => {
     console.log(`Hello Mario,I am listening on port ${process.env.PORT}`)

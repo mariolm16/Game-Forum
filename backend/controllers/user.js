@@ -13,6 +13,7 @@ const Post = require('../models').Post;
 // }
 
 const showUser = (req, res) => {
+    console.log(req.params.id)
     User.findById(req.user.id)
         .populate('posts')
         .exec((err, foundUser) => {
