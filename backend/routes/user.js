@@ -2,10 +2,15 @@ const express = require('express');
 const router = express.Router();
 const ctrl = require ('../controllers');
 
-router.post('/signup', ctrl.user.createUser);
+//test show all
 router.get('/all', ctrl.user.allUsers);
-router.get('/:id', ctrl.user.showUser);
+
+
+router.get('/profile', ctrl.user.showUser);
+
+//test
 router.delete('/:id', ctrl.user.deleteUser);
-router.put('/:id', ctrl.user.editUser);
+
+router.put('/profile', ctrl.user.editUser);
 
 module.exports = router

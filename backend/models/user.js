@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
         email: {
         type:String,
         unique: [true, 'This email is already in use. Please log in or use another email'],
-        required: true
+        required: true,
+        lowercase: true,
         },
         image: {
         type: String,

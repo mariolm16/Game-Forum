@@ -1,27 +1,27 @@
 const User = require('../models').User;
 const Post = require('../models').Post;
 
-const createUser = (req, res) => {
-    User.create(req.body, (err, createdUser) => {
-        if(err){
-            console.log('something is happening...')
-            return res.status(500).json(err);
-        }
-        console.log(createdUser)
-        res.status(200).json(createdUser)
-    });
-}
+// const createUser = (req, res) => {
+//     User.create(req.body, (err, createdUser) => {
+//         if(err){
+//             console.log('something is happening...')
+//             return res.status(500).json(err);
+//         }
+//         console.log(createdUser)
+//         res.status(200).json(createdUser)
+//     });
+// }
 
-        const showUser = (req, res) => {
-            User.findById(req.params.id)
-            .populate('posts')
-            .exec((err, foundUser) => {
-                if(err){
-                    console.log('something is happening...')
-                    return res.status(500).json(err);
-                }
-                console.log(foundUser)
-                res.status(200).json(foundUser);
+const showUser = (req, res) => {
+    User.findById(req.user.id)
+        .populate('posts')
+        .exec((err, foundUser) => {
+             if(err){
+              console.log('something is happening...')
+              return res.status(500).json(err);
+          }
+         console.log(foundUser)
+         res.status(200).json(foundUser);
             })
         }
     // const showUser = (req, res) => {
@@ -67,7 +67,7 @@ const createUser = (req, res) => {
 
 
 module.exports = {
-    createUser,
+   
     showUser,
     allUsers,
     deleteUser,
