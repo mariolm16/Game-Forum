@@ -1,9 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const ctrl = require ('../controllers');
+const ctrl = require("../controllers");
 
-router.post('/', ctrl.comment.createComment);
-router.get('/all', ctrl.comment.allComments);
-router.delete('/:id', ctrl.comment.deleteComment);
+router.post("/:post", ctrl.comment.createComment);
 
-module.exports = router
+router.get("/", ctrl.comment.allComments);
+
+router.delete("/:id", ctrl.comment.deleteComment);
+
+module.exports = router;

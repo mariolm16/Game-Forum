@@ -1,16 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const ctrl = require ('../controllers');
+const ctrl = require("../controllers");
 
 //test show all
-router.get('/all', ctrl.user.allUsers);
+router.get("/all", ctrl.user.allUsers);
 
+router.get("/profile", ctrl.user.showUser);
 
-router.get('/profile', ctrl.user.showUser);
+router.delete("/profile", ctrl.user.deleteUser);
 
-//test
-router.delete('/profile', ctrl.user.deleteUser);
+router.put("/profile", ctrl.user.editUser);
 
-router.put('/profile', ctrl.user.editUser);
-
-module.exports = router
+module.exports = router;
