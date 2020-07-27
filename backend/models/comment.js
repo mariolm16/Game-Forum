@@ -9,13 +9,9 @@ const commentSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  _creator: {
+  author: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-  },
-  _post: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Post",
   },
 });
 
