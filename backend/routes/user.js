@@ -6,7 +6,7 @@ const ctrl = require ('../controllers');
 router.get('/all', ctrl.user.allUsers);
 
 
-router.get('/:id', ctrl.user.showUser);
+router.get('/profile', ctrl.user.showUser);
 
 //test
 router.delete('/:id', ctrl.user.deleteUser);

@@ -13,7 +13,7 @@ const Post = require('../models').Post;
 // }
 
 const showUser = (req, res) => {
-    console.log(req.params.id)
+    
     User.findById(req.user.id)
         .populate('posts')
         .exec((err, foundUser) => {
@@ -56,7 +56,9 @@ const showUser = (req, res) => {
     }
 
     const editUser = (req, res) => {
-        User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser)=> {
+        console.log(req.user.username, req.user.id)
+        console.log(req.body)
+        User.findByIdAndUpdate(req.user.id, req.body, {new:true}, (err, updatedUser)=> {
             if(err){
                 return res.status(500).json(err);
             }
