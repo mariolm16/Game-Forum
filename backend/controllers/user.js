@@ -46,7 +46,8 @@ const showUser = (req, res) => {
     }
 
     const deleteUser = (req, res) => {
-        User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
+        console.log(req.user.username, req.user.id)
+        User.findByIdAndRemove(req.user.id, (err, deletedUser) => {
             if(err){
                 return res.status(500).json(err);
             }
@@ -56,8 +57,6 @@ const showUser = (req, res) => {
     }
 
     const editUser = (req, res) => {
-        console.log(req.user.username, req.user.id)
-        console.log(req.body)
         User.findByIdAndUpdate(req.user.id, req.body, {new:true}, (err, updatedUser)=> {
             if(err){
                 return res.status(500).json(err);

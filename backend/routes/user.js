@@ -9,7 +9,7 @@ router.get('/all', ctrl.user.allUsers);
 router.get('/profile', ctrl.user.showUser);
 
 //test
-router.delete('/:id', ctrl.user.deleteUser);
+router.delete('/profile', ctrl.user.deleteUser);
 
 router.put('/profile', ctrl.user.editUser);
 
