@@ -51,16 +51,16 @@ const allComments = (req, res) => {
 };
 
 // works somewhat but doesnt stop spinning ie no return -- it deleted before checking to see if user is author
-const deleteComment = (req, res) => {
-  Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
-    if (deletedComment.author === req.user._id) {
-      res.status(200).json(deletedComment);
-    }
-    if (err) {
-      return res.status(500).json(err);
-    } else res.status(200).json("nice");
-  });
-};
+// const deleteComment = (req, res) => {
+//   Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
+//     if (deletedComment.author === req.user._id) {
+//       res.status(200).json(deletedComment);
+//     }
+//     if (err) {
+//       return res.status(500).json(err);
+//     } else res.status(200).json("nice");
+//   });
+// };
 
 // const deleteComment = (req, res) => {
 //   console.log(req.user._id);
@@ -76,20 +76,24 @@ const deleteComment = (req, res) => {
 //   });
 // };
 
-// const deleteComment = (req, res) => {
-//   console.log(req.user);
-//   Comment.findById(req.params.id).then((foundComment) => {
-//     console.log(foundComment);
-//     if (foundComment.author === req.user._id) {
-//       console.loglog("hiiiiiiiiiiiiiiiiii");
-//       Comment.findByIdAndRemove(foundComment._id).then((deletedComment) => {
-//         res.status(200).json(deletedComment);
-//       });
-//     } else {
-//       return res.status(500).json("something is broken");
-//     }
-//   });
-// };
+const deleteComment = (req, res) => {
+  const userid = req.user._id;
+  Comment.findById(req.params.id).then((foundComment) => {
+    console.log(foundComment.author);
+    console.log(userid);
+    if (userid === foundComment.author);
+    console.log(userid === foundComment.author);
+    {
+      console.log("howdfy");
+      Comment.findByIdAndRemove(req.params.id, (deletedComment, err) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        res.status(200).json(deletedComment);
+      });
+    }
+  });
+};
 
 module.exports = {
   createComment,
