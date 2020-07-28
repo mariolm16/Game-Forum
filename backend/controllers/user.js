@@ -6,10 +6,8 @@ const showUser = (req, res) => {
     .populate("_posts", "title")
     .exec((err, foundUser) => {
       if (err) {
-        console.log("something is happening...");
         return res.status(500).json(err);
       }
-      console.log(foundUser);
       res.status(200).json(foundUser);
     });
 };
@@ -19,7 +17,6 @@ const allUsers = (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
-    console.log(foundUsers);
     res.status(200).json(foundUsers);
   });
 };
@@ -29,13 +26,11 @@ const deleteUser = (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
-    console.log(deletedUser);
     res.status(200).json(deletedUser);
   });
 };
 
 const editUser = (req, res) => {
-  console.log(req.user);
   User.findByIdAndUpdate(
     req.user._id,
     req.body,
@@ -44,7 +39,6 @@ const editUser = (req, res) => {
       if (err) {
         return res.status(500).json(err);
       }
-      console.log(updatedUser);
       res.status(200).json(updatedUser);
     }
   );

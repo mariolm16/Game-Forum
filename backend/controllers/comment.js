@@ -80,9 +80,10 @@ const allComments = (req, res) => {
 const deleteComment = (req, res) => {
   const userid = req.user._id;
   Comment.findById(req.params.id).then((foundComment) => {
-    console.log(foundComment.author);
-    console.log(userid);
-    if (userid === foundComment.author);
+    console.log(typeof foundComment.author);
+    console.log(typeof userid);
+
+    if (userid == foundComment.author);
     {
       console.log("howdfy");
       Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
