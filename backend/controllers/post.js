@@ -56,30 +56,43 @@ const deletePost = (req, res) => {
     const creator = foundPost._creator.toString();
 
     console.log(userId, creator);
-    if (userId === creator);
-    {
+    if (userId === creator) {
       Post.findByIdAndRemove(req.params.id, (err, deletedPost) => {
         if (err) {
           return res.status(500).json(err);
         }
         res.status(200).json(deletedPost);
       });
+    } else {
+      return res.status(401).json("Unauthorized access");
     }
   });
 };
 
 const editPost = (req, res) => {
-  Post.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, updatedPost) => {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      res.status(200).json(updatedPost);
+  console.log(req.user);
+  const userId = req.user.id;
+  Post.findById(req.params.id).then((foundPost) => {
+    console.log(foundPost);
+    const creator = foundPost._creator.toString();
+
+    console.log(userId, creator);
+    if (userId === creator) {
+      Post.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+        (err, updatedPost) => {
+          if (err) {
+            return res.status(500).json(err);
+          }
+          res.status(200).json(updatedPost);
+        }
+      );
+    } else {
+      return res.status(401).json("Unauthorized access");
     }
-  );
+  });
 };
 
 module.exports = {
