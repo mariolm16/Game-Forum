@@ -1,8 +1,9 @@
 const User = require("../models").User;
-require("dotenv").config();
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
 
 const signup = (req, res) => {
   bcrypt.genSalt(10, (err, salt) => {
@@ -26,8 +27,7 @@ const signup = (req, res) => {
               expiresIn: "30 days",
             }
           );
-
-          res.status(200).json(token, console.log(newUser), {
+          res.status(200).json(token (newUser), {
             token: token,
           });
         })
@@ -56,8 +56,6 @@ const login = (req, res) => {
                 expiresIn: "30 days",
               }
             );
-            console.log(foundUser);
-
             res.status(200).json({
               token: token,
             });
