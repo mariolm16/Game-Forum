@@ -10,7 +10,7 @@ const createComment = (req, res) => {
       return res.status(500).json(err);
     }
     //IF GETTING USER ID FROM JWT - HAVE TO PUT IN BEFORE CREATE
-    req.body.author = req.user._id;
+    req.body.author = req.user.id;
     Comment.create(req.body, (err, createdComment) => {
       if (err) {
         console.log("something is happening...");
@@ -30,15 +30,6 @@ const createComment = (req, res) => {
   });
 };
 
-// const allComments = (req, res) => {
-//   Comment.find({}, (err, foundComments) => {
-//     if (err) {
-//       return res.status(500).json(err);
-//     }
-//     res.status(200).json(foundComments);
-//   });
-// };
-
 const allComments = (req, res) => {
   Comment.find({})
     .populate("author", "username")
@@ -50,42 +41,17 @@ const allComments = (req, res) => {
     });
 };
 
-// works somewhat but doesnt stop spinning ie no return -- it deleted before checking to see if user is author
-// const deleteComment = (req, res) => {
-//   Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
-//     if (deletedComment.author === req.user._id) {
-//       res.status(200).json(deletedComment);
-//     }
-//     if (err) {
-//       return res.status(500).json(err);
-//     } else res.status(200).json("nice");
-//   });
-// };
-
-// const deleteComment = (req, res) => {
-//   console.log(req.user._id);
-//   Comment.findById(req.params.id).then((foundComment) => {
-//     console.log(foundComment.author);
-//     if (foundComment.author === req.user._id) console.log("here there");
-//     foundComment.remove((err, deletedComment) => {
-//       if (err) {
-//         return res.status(500).json(err);
-//       }
-//       res.status(200).json(deletedComment);
-//     });
-//   });
-// };
-// works somewhat but doesnt stop spinning ie no return -- it deleted before checking to see if user is author
-
 const deleteComment = (req, res) => {
-  const userid = req.user._id;
-  Comment.findById(req.params.id).then((foundComment) => {
-    console.log(typeof foundComment.author);
-    console.log(typeof userid);
+  console.log(req.user);
 
-    if (userid == foundComment.author);
+  Comment.findById(req.params.id).then((foundComment) => {
+    const userid = req.user.id;
+    const author = foundComment.author.toString();
+
+    console.log(author === userid);
+
+    if (userid === author);
     {
-      console.log("howdfy");
       Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
         if (err) {
           return res.status(500).json(err);
