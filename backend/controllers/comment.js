@@ -75,6 +75,7 @@ const allComments = (req, res) => {
 //     });
 //   });
 // };
+// works somewhat but doesnt stop spinning ie no return -- it deleted before checking to see if user is author
 
 const deleteComment = (req, res) => {
   const userid = req.user._id;
@@ -82,10 +83,9 @@ const deleteComment = (req, res) => {
     console.log(foundComment.author);
     console.log(userid);
     if (userid === foundComment.author);
-    console.log(userid === foundComment.author);
     {
       console.log("howdfy");
-      Comment.findByIdAndRemove(req.params.id, (deletedComment, err) => {
+      Comment.findByIdAndRemove(req.params.id, (err, deletedComment) => {
         if (err) {
           return res.status(500).json(err);
         }
