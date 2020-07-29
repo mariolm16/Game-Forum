@@ -37,3 +37,10 @@ export const putProfile = async (values) => {
   const updatedProfile = await api.put('/user/profile', values);
   return updatedProfile.data
 }
+
+//delete user profile
+export const deleteUser = async (_id) => {
+  console.log(_id)
+  const deleteUser = await api.delete('/user/profile', _id)
+  return deleteUser
+}

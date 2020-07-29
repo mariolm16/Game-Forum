@@ -8,7 +8,7 @@ import SignIn from './Components/User/SignIn';
 import Profile from './Components/Profile/Profile';
 
 //Axios Imports
-import { signUp, loginUser, verifyUser } from "./Service/api_helper";
+import { signUp, loginUser, verifyUser, deleteUser } from "./Service/api_helper";
 
 class App extends Component {
   constructor(props) {
@@ -17,8 +17,9 @@ class App extends Component {
     this.state = {
       currentUser: null,
       modal: false,
-      // userProfile: null,
+      modal2: false,
     };
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   //Check to see if token is already in local storage
@@ -32,28 +33,21 @@ class App extends Component {
   //Sign up function
   handleSignUp = async (e, user) => {
     e.preventDefault();
-    console.log("click works. sending:", user);
     const currentUser = await signUp(user);
-    // const userProfile = await getProfile(user);
-    console.log(currentUser);
     this.setState({
       currentUser: currentUser
-      // userProfile: userProfile,
     });
     this.props.history.push(`/`);
-    console.log(this.state.currentUser);
   };
 
   //sign in function
   handleSignIn = async (e, user) => {
     e.preventDefault();
-    console.log("click works. sending:", user);
     const currentUser = await loginUser(user);
     this.setState({
       currentUser: currentUser
     })
     this.props.history.push(`/`);
-    console.log('this is the state:', this.state.currentUser);
   }
 
   //Signout function 
@@ -65,6 +59,8 @@ class App extends Component {
     this.props.history.push('/');
   }
 
+
+  //REFACTOR MODALS TO TAKE LESS SPACE
   //Set state of Modal pop-up : true
   setModalTrue = () => {
     this.setState({
@@ -78,6 +74,31 @@ class App extends Component {
       modal: false,
     });
   };
+
+  //Set state of Modal pop-up : true
+  setModalTrue2 = () => {
+    this.setState({
+      modal2: true,
+    });
+  };
+
+  //Set state of Modal pop-up: false
+  setModalFalse2 = () => {
+    this.setState({
+      modal2: false,
+    });
+  };
+
+  //delete user
+  deleteUser = async (_id) => {
+    console.log('Sending from profile.js', this.state._id)
+    deleteUser(this.state._id);
+    this.setState({
+      currentUser: null
+    })
+    localStorage.removeItem('authToken');
+    this.props.history.push('/');
+  }
 
   render() {
     Modal.setAppElement("#root");
@@ -95,18 +116,29 @@ class App extends Component {
 
           {this.state.currentUser && <button onClick={this.handleLogout}>Logout</button>}
         </header>
-        {/* <SignUp handleSubmit={this.handleSignUp} />
-        <SignIn handleSubmit={this.handleSignIn} /> */}
-        <button onClick={() => this.setModalTrue()}>Ready to Begin?</button>
+
+        <button onClick={() => this.setModalTrue()}>Sign Up</button>
         <Modal className="signin" isOpen={this.state.modal}>
-          <h2>Welcome to Wayfarer!</h2>
+          <h2>Sign Up</h2>
           <SignUp handleSubmit={this.handleSignUp} />
-          <SignIn handleSubmit={this.handleSignIn} />
+
           <br></br>
           <button onClick={() => this.setModalFalse()}> Close</button>
         </Modal>
+
+        <button onClick={() => this.setModalTrue2()}>Log in</button>
+        <Modal className="signin" isOpen={this.state.modal2}>
+          <h2>Sign In</h2>
+
+          <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
+          <br></br>
+          <button onClick={() => this.setModalFalse2()}> Close</button>
+        </Modal>
+
+
+
         {this.state.currentUser &&
-          <Route path='/profile' render={(props) => { return <Profile user={this.state.currentUser} /> }} />}
+          <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
       </div>
     );
   }

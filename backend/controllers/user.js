@@ -24,7 +24,7 @@ const allUsers = (req, res) => {
 
 const deleteUser = (req, res) => {
   console.log(req.user)
-  User.findByIdAndRemove(req.user._id, (err, deletedUser) => {
+  User.findByIdAndRemove(req.user.id, (err, deletedUser) => {
     if (err) {
       return res.status(500).json(err);
     }

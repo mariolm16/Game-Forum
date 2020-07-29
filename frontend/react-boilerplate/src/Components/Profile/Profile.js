@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from "react-modal";
-
+import { Route, Link, withRouter } from "react-router-dom";
 
 import { putProfile } from '../../Service/api_helper'
 
@@ -46,6 +46,7 @@ class Profile extends Component {
         });
     };
 
+
     render(props) {
         return (
             <div>
@@ -55,6 +56,8 @@ class Profile extends Component {
                 <p>Email: {this.state.email}</p>
                 <p>Member since: {this.state.created}</p>
                 <p>{this.state.bio}</p>
+
+                <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
 
                 <button onClick={() => this.setModalTrue()}>Edit Profile</button>
                 <Modal isOpen={this.state.modal}>
@@ -102,4 +105,4 @@ class Profile extends Component {
         )
     }
 }
-export default Profile;
+export default withRouter(Profile);
