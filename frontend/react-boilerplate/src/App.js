@@ -6,7 +6,8 @@ import Modal from "react-modal";
 import SignUp from "./Components/User/SignUp";
 import SignIn from './Components/User/SignIn';
 import Profile from './Components/Profile/Profile';
-
+import News from './Components/News/News';
+import Posts from './Components/Post/Posts';
 //Axios Imports
 import { signUp, loginUser, verifyUser, deleteUser } from "./Service/api_helper";
 
@@ -109,36 +110,43 @@ class App extends Component {
           <Link to={"/"}>
             <button>Home</button>
           </Link>
+
+          <Link to={"/posts"}>
+            <button>Posts</button>
+          </Link>
+
           {this.state.currentUser && (
             <Link to={"/profile"}>
               <button>Profile</button>
             </Link>)}
 
           {this.state.currentUser && <button onClick={this.handleLogout}>Logout</button>}
+
+
+          <button onClick={() => this.setModalTrue()}>Sign Up</button>
+          <Modal className="signin" isOpen={this.state.modal}>
+            <h2>Sign Up</h2>
+            <SignUp handleSubmit={this.handleSignUp} />
+
+            <br></br>
+            <button onClick={() => this.setModalFalse()}> Close</button>
+          </Modal>
+
+          <button onClick={() => this.setModalTrue2()}>Log in</button>
+          <Modal className="signin" isOpen={this.state.modal2}>
+            <h2>Sign In</h2>
+
+            <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
+            <br></br>
+            <button onClick={() => this.setModalFalse2()}> Close</button>
+          </Modal>
+          {this.state.currentUser &&
+            <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
         </header>
 
-        <button onClick={() => this.setModalTrue()}>Sign Up</button>
-        <Modal className="signin" isOpen={this.state.modal}>
-          <h2>Sign Up</h2>
-          <SignUp handleSubmit={this.handleSignUp} />
+        <Route exact path='/posts' component={Posts} />
 
-          <br></br>
-          <button onClick={() => this.setModalFalse()}> Close</button>
-        </Modal>
-
-        <button onClick={() => this.setModalTrue2()}>Log in</button>
-        <Modal className="signin" isOpen={this.state.modal2}>
-          <h2>Sign In</h2>
-
-          <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
-          <br></br>
-          <button onClick={() => this.setModalFalse2()}> Close</button>
-        </Modal>
-
-
-
-        {this.state.currentUser &&
-          <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
+        <News />
       </div>
     );
   }

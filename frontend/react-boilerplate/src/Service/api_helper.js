@@ -52,3 +52,9 @@ export const findPosts = async (id) => {
   const userPosts = await api.get('/user/profile', id)
   return userPosts.data._posts
 }
+
+//get all posts 
+export const getPosts = async () => {
+  const foundPosts = await api.get('/post/all')
+  return foundPosts.data
+}
