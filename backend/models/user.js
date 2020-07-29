@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
+
     default:
       "https://i.pinimg.com/236x/ba/e9/bb/bae9bbde8dcefca422aa14d9e16e11bb.jpg",
   },
@@ -37,7 +37,6 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  bio: String,
   _posts: [
     {
       type: mongoose.Schema.ObjectId,
@@ -50,6 +49,9 @@ const userSchema = mongoose.Schema({
       ref: "Comment",
     },
   ],
+  bio: {
+    type: String
+  },
 });
 
 const User = mongoose.model("User", userSchema);

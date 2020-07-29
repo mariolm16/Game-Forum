@@ -19,10 +19,11 @@ app.use(bodyParser.json());
 
 const verifyToken = (req, res, next) => {
   let token = req.headers["authorization"];
+
   if (token) {
     token = token.substring(7);
   }
-
+  console.log(token)
   jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
     if (err || !decodedUser) {
       return res.status(401).send(`ERROR: ${err}`);
@@ -34,11 +35,10 @@ const verifyToken = (req, res, next) => {
 };
 
 app.use("/auth", routes.auth);
-
+app.use("/auth/verify", verifyToken, routes.auth);
 app.use("/user/all", routes.user);
 app.use("/user", verifyToken, routes.user);
 app.use("/post/all", routes.post);
-app.use("/auth/verify", verifyToken, routes.auth);
 app.use("/post", verifyToken, routes.post);
 app.use("/comment/all", routes.comment);
 app.use("/comment", verifyToken, routes.comment);
