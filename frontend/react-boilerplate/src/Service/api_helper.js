@@ -44,3 +44,11 @@ export const deleteUser = async (_id) => {
   const deleteUser = await api.delete('/user/profile', _id)
   return deleteUser
 }
+
+//get user posts
+
+export const findPosts = async (id) => {
+  console.log(id)
+  const userPosts = await api.get('/user/profile', id)
+  return userPosts.data._posts
+}

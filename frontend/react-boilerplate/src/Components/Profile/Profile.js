@@ -4,6 +4,8 @@ import { Route, Link, withRouter } from "react-router-dom";
 
 import { putProfile } from '../../Service/api_helper'
 
+import UserPosts from './UserPosts';
+
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -100,8 +102,10 @@ class Profile extends Component {
 
                     <button onClick={() => this.setModalFalse()}>Return</button>
                 </Modal>
-            </div>
 
+                <UserPosts id={this.state._id} />
+
+            </div>
         )
     }
 }
