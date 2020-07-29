@@ -27,7 +27,7 @@ const signup = (req, res) => {
               expiresIn: "30 days",
             }
           );
-          res.status(200).json(token (newUser), {
+          res.status(200).json(token(newUser), {
             token: token,
           });
         })
@@ -57,28 +57,30 @@ const login = (req, res) => {
               }
             );
             res.status(200).json({
+              foundUser,
               token: token,
             });
           } else {
-            res.status(500).send(`1ERROR: Incorrect Password`);
+            res.status(500).send(`ERROR: Incorrect Password`);
           }
         });
       } else {
-        res.status(500).send(`2ERROR: Incorrect Username`);
+        res.status(500).send(`ERROR: Incorrect Username`);
       }
     })
     .catch((err) => {
-      res.status(500).send(`3ERROR: internal server error: ${err}`);
+      res.status(500).send(`ERROR: internal server error: ${err}`);
     });
 };
 
 const verifyUser = (req, res) => {
   User.findById(req.user.id)
+  console.log(req.user)
     .then((foundUser) => {
       res.status(200).json(foundUser);
     })
     .catch((err) => {
-      res.status(500).send(`ERROR: oh no`);
+      res.status(500).send(`Err: Token not found`);
     });
 };
 
