@@ -58,3 +58,9 @@ export const getPosts = async () => {
   const foundPosts = await api.get('/post/all')
   return foundPosts.data
 }
+
+//create new posts
+export const createPost = async (postData, id) => {
+  const newPost = await api.post('/post/new', id, postData)
+  return newPost
+}

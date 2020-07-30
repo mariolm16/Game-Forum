@@ -144,7 +144,9 @@ class App extends Component {
             <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
         </header>
 
-        <Route exact path='/posts' component={Posts} />
+        {/* <Route exact path='/posts' component={Posts} /> */}
+
+        <Route exact path='/posts' render={(props) => { return (<Posts user={this.state.currentUser} />) }} />
 
         <News />
       </div>

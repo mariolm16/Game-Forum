@@ -2,12 +2,13 @@ const Post = require("../models").Post;
 const User = require("../models").User;
 
 const createPost = (req, res) => {
-  console.log(req.user);
+  console.log('Info passed from react', req.user);
   User.findById(req.user.id, (err, foundUser) => {
     if (err) {
       return res.status(500).json(err);
     }
     req.body._creator = req.user.id;
+    console.log('user info', req.body)
     Post.create(req.body, (err, createdPost) => {
       if (err) {
         return res.status(500).json(err);
