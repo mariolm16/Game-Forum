@@ -76,3 +76,17 @@ export const destroyPost = async (id) => {
   const deletedPost = await api.delete(`/post/${id}`)
   return deletedPost
 }
+
+//Edit post
+export const editPost = async (id, values) => {
+  console.log(id, values)
+  const updatedPost = await api.delete(`/post/:id`, values)
+  console.log(updatedPost)
+}
+
+//make comment 
+export const makeComment = async (id, body) => {
+  console.log(id, body)
+  const newComment = await api.post(`/comment/${id}`, body)
+  console.log(newComment)
+}

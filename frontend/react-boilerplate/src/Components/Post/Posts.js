@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import Modal from "react-modal";
 
-import { getPosts, createPost, retPost, destroyPost } from "../../Service/api_helper"
+import { getPosts, createPost, retPost, destroyPost, editPost, makeComment } from "../../Service/api_helper"
 
 //custom imports
+import Comment from './Comment';
 import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
 import "../../Css/Post.css"
@@ -17,6 +18,7 @@ class Posts extends Component {
             singlePost: "",
             user: this.props.user,
             modal: false,
+            modalEdit: false,
         }
     }
     // route /post/all
@@ -54,7 +56,20 @@ class Posts extends Component {
             modal: false,
         });
     };
+    //Set modal for update form
+    setModalEdit = () => {
+        this.setState({
+            modalEdit: true,
+        });
+    };
 
+    //set modal for edit
+    setModalEditFalse = () => {
+        this.setState({
+            modalEdit: false,
+        });
+    };
+    //delete post if user signed on and owns post
     deletePost = async (id) => {
         await destroyPost(id)
         const allPosts = this.state.allPosts;
@@ -65,7 +80,26 @@ class Posts extends Component {
             allPosts: remainingPosts
         })
     }
+    // handle change for form
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    };
 
+    //update post function
+    // updatePost = async (e, id, values) => {
+    //     e.preventDefault();
+    //     console.log(id, values)
+    //     const updatedPost = await editPost(id, values);
+    // }
+
+    createComment = async (e, body) => {
+        e.preventDefault()
+        console.log(body)
+        const newComment = await makeComment(this.state.singlePost._id, body);
+
+    }
 
     render() {
         return (
@@ -73,6 +107,8 @@ class Posts extends Component {
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
                     {this.state.singlePost && <SinglePost closeModal={this.setModalFalse} post={this.state.singlePost} id={this.state.user._id} />}
+                    <Comment handleSubmit={this.createComment} />
+
                 </Modal>
 
                 {this.state.user && <CreatePost handleSubmit={this.createPost} />}
@@ -86,12 +122,43 @@ class Posts extends Component {
                                 <button onClick={() => this.getPost(post._id)}>See more</button>
 
                                 {this.state.user && <button onClick={() => this.deletePost(post._id)}>Delete Post</button>}
+
+                                {/* <button onClick={() => this.setModalEdit()}>Edit Post</button>
+                                <Modal isOpen={this.state.modalEdit}>
+                                    <form onSubmit={(e) => this.updatePost(e, this.state)}>
+
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            placeholder="title"
+                                            value={post.title}
+                                            onChange={this.handleChange}
+                                        />
+                                        <br></br>
+                                        <input
+                                            type="text"
+                                            name="body"
+                                            placeholder="body"
+                                            value={post.body}
+                                            onChange={this.handleChange}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="image"
+                                            placeholder="image"
+                                            value={post.image}
+                                            onChange={this.handleChange}
+                                        />
+                                        <input type="submit" value="Submit Post" />
+                                        <button onClick={() => this.setModalEditFalse()}>Return</button>
+                                    </form> */}
+                                {/* </Modal> */}
                             </div>
                         )
                     })}
                 </div>
 
-            </div>
+            </div >
         )
     }
 }

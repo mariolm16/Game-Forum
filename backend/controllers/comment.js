@@ -5,17 +5,20 @@ const User = require("../models").User;
 const Comment = require("../models").Comment;
 
 const createComment = (req, res) => {
-  console.log(req.user);
+  console.log('check1', req.user);
+  console.log(req.body)
+  console.log('check 2', req.params.post)
   Post.findById(req.params.post, (err, foundPost) => {
     if (err) {
-      console.log("something is happening...");
+      console.log("fail at found post...", foundPost);
       return res.status(500).json(err);
     }
     //IF GETTING USER ID FROM JWT - HAVE TO PUT IN BEFORE CREATE
     req.body.author = req.user.id;
+    console.log('Check3:', req.body.author, 'check3 body', req.body)
     Comment.create(req.body, (err, createdComment) => {
       if (err) {
-        console.log("something is happening...");
+        console.log("fail at create comment");
         return res.status(500).json(err);
       }
 

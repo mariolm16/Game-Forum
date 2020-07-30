@@ -119,37 +119,33 @@ class App extends Component {
               <button>Profile</button>
             </Link>)}
 
-          {this.state.currentUser && <button onClick={this.handleLogout}>Logout</button>}
+          {this.state.currentUser ? (
+            <button onClick={this.handleLogout}>Logout</button>) : (
+              <div>
+                <button onClick={() => this.setModalTrue()}>Sign Up</button>
+                <Modal className="signin" isOpen={this.state.modal}>
+                  <h2>Sign Up</h2>
+                  <SignUp handleSubmit={this.handleSignUp} />
 
-
-          <button onClick={() => this.setModalTrue()}>Sign Up</button>
-          <Modal className="signin" isOpen={this.state.modal}>
-            <h2>Sign Up</h2>
-            <SignUp handleSubmit={this.handleSignUp} />
-
-            <br></br>
-            <button onClick={() => this.setModalFalse()}> Close</button>
-          </Modal>
-
-          <button onClick={() => this.setModalTrue2()}>Log in</button>
-          <Modal className="signin" isOpen={this.state.modal2}>
-            <h2>Sign In</h2>
-
-            <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
-            <br></br>
-            <button onClick={() => this.setModalFalse2()}> Close</button>
-          </Modal>
-
+                  <button onClick={() => this.setModalFalse()}> Close</button>
+                </Modal>
+                <button onClick={() => this.setModalTrue2()}>Log in</button>
+                <Modal className="signin" isOpen={this.state.modal2}>
+                  <h2>Sign In</h2>
+                  <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
+                  <button onClick={() => this.setModalFalse2()}> Close</button>
+                </Modal>
+              </div>
+            )}
 
 
 
 
-          {this.state.currentUser &&
-            <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
+          <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />
 
         </header>
 
-        {/* <Route exact path='/posts' component={Posts} /> */}
+
 
         <Route exact path='/posts' render={(props) => { return (<Posts user={this.state.currentUser} />) }} />
 
