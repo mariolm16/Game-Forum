@@ -48,7 +48,6 @@ class App extends Component {
     this.setState({
       currentUser: currentUser
     })
-    this.props.history.push(`/`);
   }
 
   //Signout function 
@@ -140,8 +139,14 @@ class App extends Component {
             <br></br>
             <button onClick={() => this.setModalFalse2()}> Close</button>
           </Modal>
+
+
+
+
+
           {this.state.currentUser &&
             <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />}
+
         </header>
 
         {/* <Route exact path='/posts' component={Posts} /> */}

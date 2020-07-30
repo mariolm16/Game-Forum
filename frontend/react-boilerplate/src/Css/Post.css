@@ -1,0 +1,10 @@
+div {
+    background-color: seagreen;
+}
+
+.postModal {
+    background-color: steelblue;
+    max-width: 100vh;
+    overflow-y: auto;
+    overflow: hidden;
+}

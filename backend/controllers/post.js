@@ -2,7 +2,6 @@ const Post = require("../models").Post;
 const User = require("../models").User;
 
 const createPost = (req, res) => {
-  console.log('Info passed from react', req.user);
   User.findById(req.user.id, (err, foundUser) => {
     if (err) {
       return res.status(500).json(err);
@@ -50,13 +49,11 @@ const allPosts = (req, res) => {
 };
 
 const deletePost = (req, res) => {
-  console.log(req.user);
   const userId = req.user.id;
   Post.findById(req.params.id).then((foundPost) => {
     console.log(foundPost);
     const creator = foundPost._creator.toString();
 
-    console.log(userId, creator);
     if (userId === creator) {
       Post.findByIdAndRemove(req.params.id, (err, deletedPost) => {
         if (err) {

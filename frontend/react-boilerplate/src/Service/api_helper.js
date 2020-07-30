@@ -64,3 +64,15 @@ export const createPost = async (postData, id) => {
   const newPost = await api.post('/post/new', id, postData)
   return newPost
 }
+
+//get single post
+export const retPost = async (id) => {
+  const post = await api.get(`/post/single/hi/${id}`)
+  return post.data
+}
+
+//Delete post
+export const destroyPost = async (id) => {
+  const deletedPost = await api.delete(`/post/${id}`)
+  return deletedPost
+}

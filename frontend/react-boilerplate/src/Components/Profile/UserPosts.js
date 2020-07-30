@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
-import { findPosts } from '../../Service/api_helper'
+import { findPosts, retPost } from '../../Service/api_helper'
 
 
 class UserPosts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            posts: [],
+            singlePost: ''
         }
     }
 
@@ -19,17 +20,28 @@ class UserPosts extends Component {
             posts
         })
     }
+    //get single post info
+    getPost = async (id) => {
+        console.log(id)
+        const post = await retPost(id);
+        this.setState({
+            singlePost: post
+        })
+    }
 
 
     render(props) {
         const posts = this.state.posts.map((post) =>
-            <li key={post.title}>{post.title}</li>
+            <li key={post.title}>{post.title}
+                <button onClick={() => this.getPost(post._id)}>See more</button>
+            </li>
         )
         return (
             <div>
-                <h1>I am the profile posts Component</h1>
+                <h1>Your contributions</h1>
                 <ul>
                     {posts}
+
                 </ul>
 
             </div>
