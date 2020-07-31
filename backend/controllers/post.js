@@ -7,18 +7,15 @@ const createPost = (req, res) => {
       return res.status(500).json(err);
     }
     req.body._creator = req.user.id;
-    console.log('user info', req.body)
     Post.create(req.body, (err, createdPost) => {
       if (err) {
         return res.status(500).json(err);
       }
-      console.log("founduser:", foundUser);
       foundUser._posts.push(createdPost);
       foundUser.save((err, savedUser) => {
         if (err) {
           return res.status(500).json(err);
         }
-        console.log("Created post:", createdPost);
         res.status(200).json(createdPost);
       });
     });

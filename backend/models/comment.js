@@ -9,6 +9,10 @@ const commentSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
   author: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

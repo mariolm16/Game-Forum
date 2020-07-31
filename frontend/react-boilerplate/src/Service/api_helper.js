@@ -93,3 +93,9 @@ export const makeComment = async (id, body) => {
   console.log(newComment.data)
   return newComment.data
 }
+
+//Delete COmment 
+export const destroyComment = async (id) => {
+  const deletedComment = await api.delete(`/comment/${id}`)
+  console.log(deletedComment)
+}

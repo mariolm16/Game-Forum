@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import Modal from "react-modal";
 
-import { getPosts, createPost, retPost, destroyPost, editPost, makeComment } from "../../Service/api_helper"
+import { getPosts, createPost, retPost, destroyPost, editPost, makeComment, destroyComment } from "../../Service/api_helper"
 
 //custom imports
 import Comment from './Comment';
@@ -25,7 +25,6 @@ class Posts extends Component {
     async componentDidMount() {
         const allPosts = await getPosts();
         const currentUser = await this.props.user
-        console.log(currentUser)
         this.setState({
             allPosts,
             user: currentUser
@@ -82,6 +81,7 @@ class Posts extends Component {
             allPosts: remainingPosts
         })
     }
+
     // handle change for form
     handleChange = (e) => {
         this.setState({
@@ -100,11 +100,19 @@ class Posts extends Component {
         e.preventDefault()
         const newComment = await makeComment(this.state.singlePost._id, body);
         const post = this.state.singlePost._comments
-        // post.push(newComment)
-        // this.setState({
-        //     singlePost: post
-        // })
+        this.getPost(this.state.singlePost._id)
     }
+
+    //delete comment if user siged on and owns it
+    deleteComment = async (id) => {
+        await destroyComment(id)
+        const allComments = this.state.singlePost._comments
+        const comments = allComments.filter((comment) => {
+            return comment._id == id;
+        })
+        this.getPost(this.state.singlePost._id)
+    }
+
 
     render() {
         return (
@@ -112,7 +120,7 @@ class Posts extends Component {
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
                     <Comment postId={this.state.singlePost} handleSubmit={this.createComment} />
-                    {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} post={this.state.singlePost} />) : (<p>Loading...</p>)}
+                    {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} />) : (<p>Loading...</p>)}
 
                 </Modal>
 

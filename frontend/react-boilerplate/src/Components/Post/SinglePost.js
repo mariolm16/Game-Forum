@@ -16,8 +16,11 @@ function SinglePost(props) {
             {props.post._comments.map((comment, _id) => {
                 return (
                     <div key={_id}>
-                        <p>Comment: {comment.body}</p>
+
+                        <h3>Comment: {comment.body}</h3>
+                        <p>Comment by: {comment.username}</p>
                         <p>Created: {comment.created}</p>
+                        <button onClick={() => props.deleteComment(comment._id)}>Delete Comment</button>
                     </div>
                 )
             })}

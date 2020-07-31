@@ -54,6 +54,7 @@ class Profile extends Component {
         const updatedUser = await putProfile(values);
         this.setState({
             currentUser: updatedUser,
+            modal: false,
         });
     };
 
