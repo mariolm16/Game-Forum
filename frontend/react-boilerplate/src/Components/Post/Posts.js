@@ -15,7 +15,7 @@ class Posts extends Component {
         super(props);
         this.state = {
             allPosts: [],
-            singlePost: "",
+            singlePost: {},
             user: null,
             modal: false,
             modalEdit: false,

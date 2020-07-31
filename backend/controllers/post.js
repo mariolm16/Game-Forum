@@ -27,6 +27,7 @@ const createPost = (req, res) => {
 
 const showPost = (req, res) => {
   Post.findById(req.params.id)
+    .populate("_creator", "username")
     .populate("_comments")
     .exec((err, foundPost) => {
       if (err) {
