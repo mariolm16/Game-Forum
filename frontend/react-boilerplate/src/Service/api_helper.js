@@ -48,7 +48,6 @@ export const deleteUser = async (_id) => {
 //get user posts
 
 export const findPosts = async (id) => {
-  console.log(id)
   const userPosts = await api.get('/user/profile', id)
   return userPosts.data._posts
 }
@@ -61,6 +60,7 @@ export const getPosts = async () => {
 
 //create new posts
 export const createPost = async (postData, id) => {
+  console.log(postData, id)
   const newPost = await api.post('/post/new', id, postData)
   return newPost
 }
@@ -86,7 +86,10 @@ export const editPost = async (id, values) => {
 
 //make comment 
 export const makeComment = async (id, body) => {
-  console.log(id, body)
-  const newComment = await api.post(`/comment/${id}`, body)
-  console.log(newComment)
+  const createObject = {
+    body: body
+  }
+  const newComment = await api.post(`/comment/${id}`, createObject)
+  console.log(newComment.data)
+  return newComment.data
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from "react-modal";
 import { Route, Link, withRouter } from "react-router-dom";
 
-import { putProfile } from '../../Service/api_helper'
+import { putProfile, findPosts } from '../../Service/api_helper'
 
 import UserPosts from './UserPosts';
 
@@ -17,11 +17,20 @@ class Profile extends Component {
             created: props.user.created,
             _id: props.user._id,
             bio: props.user.bio,
-            modal: false
+            modal: false,
+            posts: []
         }
     }
+
+    async componentDidMount(id) {
+        const posts = await findPosts(this.state._id);
+        this.setState({
+            posts
+        })
+    }
+
+
     handleChange = (e) => {
-        console.log()
         this.setState({
             [e.target.name]: e.target.value,
         });
@@ -103,7 +112,7 @@ class Profile extends Component {
                     <button onClick={() => this.setModalFalse()}>Return</button>
                 </Modal>
 
-                <UserPosts id={this.state._id} />
+                {this.state.posts ? (<UserPosts posts={this.state.posts} />) : (<h3>Head over to the posts section to begin having fun</h3>)}
 
             </div>
         )

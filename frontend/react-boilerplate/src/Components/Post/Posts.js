@@ -16,7 +16,7 @@ class Posts extends Component {
         this.state = {
             allPosts: [],
             singlePost: "",
-            user: this.props.user,
+            user: null,
             modal: false,
             modalEdit: false,
         }
@@ -24,10 +24,12 @@ class Posts extends Component {
     // route /post/all
     async componentDidMount() {
         const allPosts = await getPosts();
+        const currentUser = await this.props.user
+        console.log(currentUser)
         this.setState({
-            allPosts
+            allPosts,
+            user: currentUser
         })
-        console.log(this.state.allPosts)
     }
 
     //Create a new post
@@ -96,9 +98,12 @@ class Posts extends Component {
 
     createComment = async (e, body) => {
         e.preventDefault()
-        console.log(body)
         const newComment = await makeComment(this.state.singlePost._id, body);
-
+        const post = this.state.singlePost._comments
+        // post.push(newComment)
+        // this.setState({
+        //     singlePost: post
+        // })
     }
 
     render() {
@@ -106,12 +111,13 @@ class Posts extends Component {
             <div>
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
-                    {this.state.singlePost && <SinglePost closeModal={this.setModalFalse} post={this.state.singlePost} id={this.state.user._id} />}
-                    <Comment handleSubmit={this.createComment} />
+                    <Comment postId={this.state.singlePost} handleSubmit={this.createComment} />
+                    {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} post={this.state.singlePost} />) : (<p>Loading...</p>)}
 
                 </Modal>
 
-                {this.state.user && <CreatePost handleSubmit={this.createPost} />}
+                {this.state.user ? (<CreatePost handleSubmit={this.createPost} />) : (<p>Sign in to join the conversation</p>)}
+
                 <div className="allPosts">
                     {this.state.allPosts.map((post, _id) => {
                         return (

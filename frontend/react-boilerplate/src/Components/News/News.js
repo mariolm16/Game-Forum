@@ -13,7 +13,7 @@ class News extends Component {
         return (
             <div>
                 <h1>I am the news Component</h1>
-                <h2>Will also have website updates :)</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/4f/Under_construction.JPG" alt="construction" />
             </div>
         )
     }

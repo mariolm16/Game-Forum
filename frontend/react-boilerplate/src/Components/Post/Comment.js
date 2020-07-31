@@ -7,7 +7,8 @@ class Comment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            body: '',
+            postId: this.props.postId._id
         }
     }
 

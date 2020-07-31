@@ -7,19 +7,17 @@ class UserPosts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: [],
+            // posts: [],
             singlePost: ''
         }
     }
 
-    async componentDidMount(id) {
-        console.log(this.props.id)
-        const posts = await findPosts(this.props.id);
-        console.log(posts)
-        this.setState({
-            posts
-        })
-    }
+    // async componentDidMount(id) {
+    //     const posts = await findPosts(this.props.id);
+    //     this.setState({
+    //         posts
+    //     })
+    // }
     //get single post info
     getPost = async (id) => {
         console.log(id)
@@ -31,9 +29,9 @@ class UserPosts extends Component {
 
 
     render(props) {
-        const posts = this.state.posts.map((post) =>
-            <li key={post.title}>{post.title}
-                <button onClick={() => this.getPost(post._id)}>See more</button>
+        const posts = this.props.posts.map((post) =>
+            <li key={post._id}>{post.title}
+                {/* <button onClick={() => this.getPost(post._id)}>See more</button> */}
             </li>
         )
         return (

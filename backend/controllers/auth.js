@@ -11,19 +11,15 @@ const signup = (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
-    console.log("hello this is an error")
     bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
       if (err) {
         return res.status(500).json(err);
       }
-      console.log("hello this is an error too")
-
       req.body.password = hashedPwd;
       User.create(req.body, (err, newUser) => {
         if (err) {
           return res.status(500).json(err);
         }
-        console.log(newUser)
         const token = jwt.sign(
           {
             username: newUser.username,
@@ -39,9 +35,6 @@ const signup = (req, res) => {
           token: token,
         });
       })
-      // .catch((err) => {
-      //   res.status(500);
-      // });
     });
   });
 };
@@ -86,7 +79,6 @@ const verifyUser = (req, res) => {
   User.findById(req.user.id)
 
     .then((foundUser) => {
-      console.log(foundUser)
       res.status(200).json(foundUser);
     })
     .catch((err) => {

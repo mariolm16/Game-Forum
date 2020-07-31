@@ -46,8 +46,10 @@ class App extends Component {
     e.preventDefault();
     const currentUser = await loginUser(user);
     this.setState({
+      modal2: false,
       currentUser: currentUser
     })
+    this.props.history.push('/profile');
   }
 
   //Signout function 
