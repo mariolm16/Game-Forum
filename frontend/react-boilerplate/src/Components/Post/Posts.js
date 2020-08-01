@@ -32,6 +32,7 @@ class Posts extends Component {
         })
     }
 
+
     //Create a new post
     createPost = async (e, postData) => {
         e.preventDefault();

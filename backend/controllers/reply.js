@@ -4,36 +4,47 @@ const Comment = require('../models').Comment
 
 //Create a comment
 const createReply = (req, res) => {
-    console.log('USER INFO', req.user.username)
-    console.log('REQ BODY', req.body)
-    console.log('URL INFO', req.params.comment)
     Comment.findById(req.params.comment, (err, foundComment) => {
         if (err) {
-
             return res.status(500).json(err);
         }
-        console.log('FOUND COMMENT', foundComment)
         req.body.reply = req.body.body
         req.body.username = req.user.username
-        console.log('BODY RIGHT BEFORE CREATE', req.body)
-
 
         Reply.create(req.body, (err, newReply) => {
             if (err) {
-                console.log("ERROR AT CREATE REPLY")
                 return res.status(500).json(err);
             }
-            console.log('FOUND COMMENT', newReply)
             foundComment.reply.push(newReply)
 
             foundComment.save((err, savedPost) => {
                 if (err) {
-
                     return res.status(500).json(err);
                 }
                 res.status(200).json(savedPost)
             })
         })
+    })
+}
+
+//Delete a comment
+const deleteReply = (req, res) => {
+    console.log(req.user);
+
+    Reply.findById(req.params.id).then((foundReply) => {
+        const user = req.user.username;
+        const creator = foundReply.username.toString();
+        console.log(user === creator)
+
+        if (user === creator) {
+            Reply.findByIdAndRemove(req.params.id, (err, deletedReply) => {
+                if (err) {
+                    return res.status(500).json(err);
+                } else res.status(200).json(deletedReply);
+            });
+        } else {
+            return res.status(401).json("Unauthorized access");
+        }
     })
 }
 
@@ -51,5 +62,6 @@ const getReply = (req, res) => {
 
 module.exports = {
     createReply,
-    getReply
+    getReply,
+    deleteReply
 }

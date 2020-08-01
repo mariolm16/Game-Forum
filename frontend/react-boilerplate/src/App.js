@@ -26,6 +26,7 @@ class App extends Component {
   //Check to see if token is already in local storage
   async componentDidMount() {
     const currentUser = await verifyUser();
+    document.title = "Game Zone"
     this.setState({
       currentUser: currentUser
     })
