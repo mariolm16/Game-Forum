@@ -29,3 +29,6 @@ exports.Post = Post;
 
 const Comment = require("./comment");
 exports.Comment = Comment;
+
+const Reply = require('./reply');
+exports.Reply = Reply

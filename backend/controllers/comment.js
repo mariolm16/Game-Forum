@@ -28,7 +28,6 @@ const createComment = (req, res) => {
 
           return res.status(500).json(err);
         }
-        console.log(createdComment)
         res.status(200).json(createdComment);
       });
     });
@@ -38,6 +37,7 @@ const createComment = (req, res) => {
 const allComments = (req, res) => {
   Comment.find({})
     .populate("author", "username")
+    .populate("reply")
     .exec((err, foundComments) => {
       if (err) {
         return res.status(500).json(err);

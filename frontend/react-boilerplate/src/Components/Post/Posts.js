@@ -73,13 +73,14 @@ class Posts extends Component {
     //delete post if user signed on and owns post
     deletePost = async (id) => {
         await destroyPost(id)
-        const allPosts = this.state.allPosts;
-        const remainingPosts = allPosts.filter((post) => {
-            return post._id == id
-        });
-        this.setState({
-            allPosts: remainingPosts
-        })
+        // const allPosts = this.state.allPosts;
+        // const remainingPosts = allPosts.filter((post) => {
+        //     return post._id == id
+        // });
+        // this.setState({
+        //     allPosts: remainingPosts
+        // })
+        this.props.history.push(`/posts`);
     }
 
     // handle change for form
@@ -177,4 +178,4 @@ class Posts extends Component {
     }
 }
 
-export default Posts;
+export default withRouter(Posts);

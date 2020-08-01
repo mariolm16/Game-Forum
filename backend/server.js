@@ -41,6 +41,8 @@ app.use("/user", verifyToken, routes.user);
 app.use("/post/all", routes.post);
 app.use("/post/single/hi", routes.post);
 
+app.use('/reply', verifyToken, routes.reply)
+
 app.use("/post", verifyToken, routes.post);
 app.use("/comment/all", routes.comment);
 app.use("/comment", verifyToken, routes.comment);

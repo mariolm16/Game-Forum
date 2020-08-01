@@ -31,14 +31,7 @@ const postSchema = mongoose.Schema({
   ],
 });
 
-postSchema.pre('remove', function (next) {
-  var post = this;
-  post.model('_creator').update(
-    { posts: { $in: post._creators } },
-    { $pull: { post: post._id } },
-    { multi: true },
-  );
-})
+
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

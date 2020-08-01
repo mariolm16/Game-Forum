@@ -3,4 +3,5 @@ module.exports = {
   post: require("./post"),
   comment: require("./comment"),
   auth: require("./auth"),
+  reply: require('./reply'),
 };
