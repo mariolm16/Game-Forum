@@ -4,17 +4,23 @@ const Comment = require('../models').Comment
 
 //Create a comment
 const createReply = (req, res) => {
-    console.log('USER INFO', req.user)
+    console.log('USER INFO', req.user.username)
+    console.log('REQ BODY', req.body)
     console.log('URL INFO', req.params.comment)
     Comment.findById(req.params.comment, (err, foundComment) => {
         if (err) {
-            console.log(foundComment)
+
             return res.status(500).json(err);
         }
+        console.log('FOUND COMMENT', foundComment)
+        req.body.reply = req.body.body
         req.body.username = req.user.username
+        console.log('BODY RIGHT BEFORE CREATE', req.body)
+
+
         Reply.create(req.body, (err, newReply) => {
             if (err) {
-
+                console.log("ERROR AT CREATE REPLY")
                 return res.status(500).json(err);
             }
             console.log('FOUND COMMENT', newReply)

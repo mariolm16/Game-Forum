@@ -100,8 +100,20 @@ export const destroyComment = async (id) => {
   console.log(deletedComment)
 }
 
+//Get post Replies
 export const fetchReply = async (id) => {
   const allReplies = await api.get(`/comment/reply/${id}`)
   console.log(allReplies.data.reply)
   return allReplies.data.reply
+}
+
+//Create a reply
+export const createReply = async (id, body) => {
+  const createObject = {
+    body: body
+  }
+  console.log('API HELPER RECIEVING', 'ID', id, 'AND BODY', createObject)
+  const newReply = await api.post(`/reply/${id}`, createObject)
+  console.log(newReply.data)
+  return newReply.data.body
 }
