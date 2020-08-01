@@ -134,7 +134,7 @@ class Posts extends Component {
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
                     <Comment postId={this.state.singlePost} handleSubmit={this.createComment} />
-                    {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} />) : (<p>Loading...</p>)}
+                    {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} getPost={this.getPost} />) : (<p>Loading...</p>)}
 
                 </Modal>
 

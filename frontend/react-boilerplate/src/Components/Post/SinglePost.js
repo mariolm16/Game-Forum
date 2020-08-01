@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { fetchReply, createReply } from "../../Service/api_helper";
+import { fetchReply, createReply, deleteReply } from "../../Service/api_helper";
 
 //custom imports
 import Reply from './Reply';
@@ -38,6 +38,13 @@ class SinglePost extends Component {
         console.log(this.state.replies)
     }
 
+    //Delete a reply
+    deleteReply = async (id) => {
+        await deleteReply(id);
+        console.log('Deleted Post')
+        this.props.getPost(this.props.post._id)
+    }
+
 
     render() {
         return (
@@ -58,7 +65,7 @@ class SinglePost extends Component {
                             <p>Created: {comment.created}</p>
                             <button onClick={() => this.getReply(comment._id)}>See replies!</button>
                             <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
-                            {this.state.replies ? (<Reply replies={this.state.replies} handleSubmit={this.createReply} id={comment._id} />) : (<p>No replies yet</p>)}
+                            {this.state.replies ? (<Reply replies={this.state.replies} handleSubmit={this.createReply} id={comment._id} handleDelete={this.deleteReply} />) : (<p>No replies yet</p>)}
 
                         </div>
 

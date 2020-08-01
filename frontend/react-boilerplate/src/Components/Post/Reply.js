@@ -37,6 +37,7 @@ class Reply extends Component {
                             <h3>REPLY: {reply.reply}</h3>
                             <p>REPLY BY: {reply.username}</p>
                             <p>REPLY TIME: {reply.created}</p>
+                            <button onClick={() => this.props.handleDelete(reply._id)}>Delete Comment</button>
                         </div>
                     )
 

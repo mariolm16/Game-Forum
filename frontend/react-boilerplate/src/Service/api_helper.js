@@ -117,3 +117,8 @@ export const createReply = async (id, body) => {
   console.log(newReply.data)
   return newReply.data.body
 }
+
+export const deleteReply = async (id) => {
+  const deletedReply = await api.delete(`/reply/single/${id}`)
+  console.log(deletedReply)
+}
