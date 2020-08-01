@@ -90,9 +90,24 @@ const editComment = (req, res) => {
   });
 };
 
+// replies by post id 
+const getReply = (req, res) => {
+  console.log(req.params.id)
+  Comment.findById(req.params.id)
+    .populate("reply")
+    .exec((err, foundReplies) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(200).json(foundReplies)
+    })
+}
+
+
 module.exports = {
   createComment,
   allComments,
   deleteComment,
   editComment,
+  getReply
 };

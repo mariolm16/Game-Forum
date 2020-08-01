@@ -99,3 +99,9 @@ export const destroyComment = async (id) => {
   const deletedComment = await api.delete(`/comment/${id}`)
   console.log(deletedComment)
 }
+
+export const fetchReply = async (id) => {
+  const allReplies = await api.get(`/comment/reply/${id}`)
+  console.log(allReplies.data.reply)
+  return allReplies.data.reply
+}

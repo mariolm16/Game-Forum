@@ -19,6 +19,7 @@ class Posts extends Component {
             user: null,
             modal: false,
             modalEdit: false,
+
         }
     }
     // route /post/all
@@ -113,6 +114,17 @@ class Posts extends Component {
         })
         this.getPost(this.state.singlePost._id)
     }
+
+    // //get comment reply by id
+    // getReply = async (id) => {
+
+    //     const reply = await fetchReply(id)
+    //     console.log(reply)
+    //     this.setState = {
+    //         currentReplies: reply
+    //     }
+    //     console.log(this.state.currentReplies)
+    // }
 
 
     render() {

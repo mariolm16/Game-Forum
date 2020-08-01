@@ -18,10 +18,12 @@ const commentSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
   },
-  reply: [{
-    type: mongoose.Schema.ObjectId,
-    ref: "Reply"
-  }]
+  reply: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Reply"
+    },
+  ],
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
