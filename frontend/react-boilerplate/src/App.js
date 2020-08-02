@@ -8,13 +8,13 @@ import SignIn from './Components/User/SignIn';
 import Profile from './Components/Profile/Profile';
 import News from './Components/News/News';
 import Posts from './Components/Post/Posts';
+
 //Axios Imports
 import { signUp, loginUser, verifyUser, deleteUser } from "./Service/api_helper";
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentUser: null,
       modal: false,
@@ -42,7 +42,7 @@ class App extends Component {
     this.props.history.push(`/home`);
   };
 
-  //sign in function
+  //Sign in function
   handleSignIn = async (e, user) => {
     e.preventDefault();
     const currentUser = await loginUser(user);
@@ -62,39 +62,36 @@ class App extends Component {
     this.props.history.push('/home');
   }
 
-
-  //REFACTOR MODALS TO TAKE LESS SPACE
-  //Set state of Modal pop-up : true
+  //Set state of Modal pop-up for Sign-in : true
   setModalTrue = () => {
     this.setState({
       modal: true,
     });
   };
 
-  //Set state of Modal pop-up: false
+  //Set state of Modal pop-up for Sign-in: false
   setModalFalse = () => {
     this.setState({
       modal: false,
     });
   };
 
-  //Set state of Modal pop-up : true
+  //Set state of Modal pop-up for Sign-up : true
   setModalTrue2 = () => {
     this.setState({
       modal2: true,
     });
   };
 
-  //Set state of Modal pop-up: false
+  //Set state of Modal pop-up for Sign-up: false
   setModalFalse2 = () => {
     this.setState({
       modal2: false,
     });
   };
 
-  //delete user
+  //Delete user
   deleteUser = async (_id) => {
-    console.log('Sending from profile.js', this.state._id)
     deleteUser(this.state._id);
     this.setState({
       currentUser: null
@@ -108,53 +105,39 @@ class App extends Component {
     return (
       <div>
         <header>
+
           <h1>GAME ZONE</h1>
-          <Link to={"/home"}>
-            <button>Home</button>
-          </Link>
+          <Link to={"/home"}><button>Home</button></Link>
 
-          <Link to={"/posts"}>
-            <button>Posts</button>
-          </Link>
-
-          {this.state.currentUser && (
-            <Link to={"/profile"}>
-              <button>Profile</button>
-            </Link>)}
+          <Link to={"/posts"}><button>Posts</button></Link>
 
           {this.state.currentUser ? (
-            <button onClick={this.handleLogout}>Logout</button>) : (
+            <div>
+              <Link to={"/profile"}><button>Profile</button></Link>
+              <button onClick={this.handleLogout}>Logout</button>
+            </div>
+          ) : (
               <div>
                 <button onClick={() => this.setModalTrue()}>Sign Up</button>
                 <Modal className="signin" isOpen={this.state.modal}>
-                  <h2>Sign Up</h2>
                   <SignUp handleSubmit={this.handleSignUp} />
-
                   <button onClick={() => this.setModalFalse()}> Close</button>
                 </Modal>
-                <button onClick={() => this.setModalTrue2()}>Log in</button>
+                <button onClick={() => this.setModalTrue2()}>Sign in</button>
                 <Modal className="signin" isOpen={this.state.modal2}>
-                  <h2>Sign In</h2>
                   <SignIn handleSubmit={this.handleSignIn} closeModal={this.setModalFalse2} />
                   <button onClick={() => this.setModalFalse2()}> Close</button>
                 </Modal>
               </div>
             )}
-
-
-
-
           <Route path='/profile' render={(props) => { return <Profile deleteUser={this.deleteUser} user={this.state.currentUser} /> }} />
-
         </header>
-
-
 
         <Route exact path='/posts' render={(props) => { return (<Posts user={this.state.currentUser} />) }} />
 
         <Route exact path='/home' render={(props) => { return (<News />) }} />
       </div>
-    );
+    )
   }
 }
 export default withRouter(App);

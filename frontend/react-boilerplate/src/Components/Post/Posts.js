@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import Modal from "react-modal";
 
-import { getPosts, createPost, retPost, destroyPost, editPost, makeComment, destroyComment } from "../../Service/api_helper"
+import { getPosts, createPost, retPost, destroyPost, makeComment, destroyComment } from "../../Service/api_helper"
 
-//custom imports
+//Custom imports
 import Comment from './Comment';
 import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
@@ -22,7 +22,7 @@ class Posts extends Component {
 
         }
     }
-    // route /post/all
+
     async componentDidMount() {
         const allPosts = await getPosts();
         const currentUser = await this.props.user
@@ -31,7 +31,6 @@ class Posts extends Component {
             user: currentUser
         })
     }
-
 
     //Create a new post
     createPost = async (e, postData) => {
@@ -44,7 +43,7 @@ class Posts extends Component {
         })
     }
 
-    //get single post info
+    //Get single post info
     getPost = async (id) => {
         const post = await retPost(id);
         this.setState({
@@ -59,46 +58,14 @@ class Posts extends Component {
             modal: false,
         });
     };
-    //Set modal for update form
-    setModalEdit = () => {
-        this.setState({
-            modalEdit: true,
-        });
-    };
 
-    //set modal for edit
-    setModalEditFalse = () => {
-        this.setState({
-            modalEdit: false,
-        });
-    };
     //delete post if user signed on and owns post
     deletePost = async (id) => {
         await destroyPost(id)
-        // const allPosts = this.state.allPosts;
-        // const remainingPosts = allPosts.filter((post) => {
-        //     return post._id == id
-        // });
-        // this.setState({
-        //     allPosts: remainingPosts
-        // })
         this.props.history.push(`/posts`);
     }
 
-    // handle change for form
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    //update post function
-    // updatePost = async (e, id, values) => {
-    //     e.preventDefault();
-    //     console.log(id, values)
-    //     const updatedPost = await editPost(id, values);
-    // }
-
+    //create comment
     createComment = async (e, body) => {
         e.preventDefault()
         const newComment = await makeComment(this.state.singlePost._id, body);
@@ -116,18 +83,6 @@ class Posts extends Component {
         this.getPost(this.state.singlePost._id)
     }
 
-    // //get comment reply by id
-    // getReply = async (id) => {
-
-    //     const reply = await fetchReply(id)
-    //     console.log(reply)
-    //     this.setState = {
-    //         currentReplies: reply
-    //     }
-    //     console.log(this.state.currentReplies)
-    // }
-
-
     render() {
         return (
             <div>
@@ -135,10 +90,9 @@ class Posts extends Component {
                     <button onClick={() => this.setModalFalse()}> Close</button>
                     <Comment postId={this.state.singlePost} handleSubmit={this.createComment} />
                     {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} getPost={this.getPost} />) : (<p>Loading...</p>)}
-
                 </Modal>
 
-                {this.state.user ? (<CreatePost handleSubmit={this.createPost} />) : (<p>Sign in to join the conversation</p>)}
+                {this.state.user ? (<CreatePost handleSubmit={this.createPost} />) : (<h3>Sign in to join the conversation</h3>)}
 
                 <div className="allPosts">
                     {this.state.allPosts.map((post, _id) => {
@@ -147,45 +101,14 @@ class Posts extends Component {
                                 <h2>{post.title}</h2>
                                 <img src={post.image} alt="post" />
                                 <p>{post.created}</p>
+
                                 <button onClick={() => this.getPost(post._id)}>See more</button>
 
                                 {this.state.user && <button onClick={() => this.deletePost(post._id)}>Delete Post</button>}
-
-                                {/* <button onClick={() => this.setModalEdit()}>Edit Post</button>
-                                <Modal isOpen={this.state.modalEdit}>
-                                    <form onSubmit={(e) => this.updatePost(e, this.state)}>
-
-                                        <input
-                                            type="text"
-                                            name="title"
-                                            placeholder="title"
-                                            value={post.title}
-                                            onChange={this.handleChange}
-                                        />
-                                        <br></br>
-                                        <input
-                                            type="text"
-                                            name="body"
-                                            placeholder="body"
-                                            value={post.body}
-                                            onChange={this.handleChange}
-                                        />
-                                        <input
-                                            type="text"
-                                            name="image"
-                                            placeholder="image"
-                                            value={post.image}
-                                            onChange={this.handleChange}
-                                        />
-                                        <input type="submit" value="Submit Post" />
-                                        <button onClick={() => this.setModalEditFalse()}>Return</button>
-                                    </form> */}
-                                {/* </Modal> */}
                             </div>
                         )
                     })}
                 </div>
-
             </div >
         )
     }

@@ -9,24 +9,23 @@ class SinglePost extends Component {
     constructor() {
         super()
         this.state = {
-            replies: null
+            replies: null,
+            commentId: ''
         }
     }
-    //get comment reply by id
+    // get comment reply by id
     getReply = async (id) => {
         const reply = await fetchReply(id)
-        console.log(reply)
-        // const keys = Object.keys(reply)
-        // console.log(keys)
         this.setState({
-            replies: reply
+            replies: reply.reply,
+            commentId: reply._id,
+            modal: true
         })
-        console.log(this.state.replies)
     }
+
 
     //Create Reply
     createReply = async (e, id, body) => {
-        console.log('TO API HELPER', id, 'BODY', body)
         e.preventDefault();
         const newReply = await createReply(id, body);
         const currentReplies = this.state.replies;
@@ -35,18 +34,16 @@ class SinglePost extends Component {
             replies: currentReplies
         })
         this.getReply(id)
-        console.log(this.state.replies)
     }
 
     //Delete a reply
     deleteReply = async (id) => {
         await deleteReply(id);
-        console.log('Deleted Post')
         this.props.getPost(this.props.post._id)
     }
 
-
     render() {
+
         return (
             <div>
                 <h1>{this.props.post.title}</h1>
@@ -58,21 +55,15 @@ class SinglePost extends Component {
                 {this.props.post._comments.map((comment, _id) => {
                     return (
                         <div key={_id}>
-
-
                             <h3>Comment: {comment.body}</h3>
                             <p>Comment by: {comment.username}</p>
                             <p>Created: {comment.created}</p>
                             <button onClick={() => this.getReply(comment._id)}>See replies!</button>
                             <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
-                            {this.state.replies ? (<Reply replies={this.state.replies} handleSubmit={this.createReply} id={comment._id} handleDelete={this.deleteReply} />) : (<p>No replies yet</p>)}
-
                         </div>
-
                     )
-
                 })}
-
+                {this.state.replies ? (<Reply replies={this.state.replies} id={this.state.commentId} handleSubmit={this.createReply} handleDelete={this.deleteReply} />) : (<p>No replies yet</p>)}
             </div>
         )
     }

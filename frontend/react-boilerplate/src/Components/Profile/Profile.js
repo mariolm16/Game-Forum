@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from "react-modal";
-import { Route, Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { putProfile, findPosts } from '../../Service/api_helper'
 
@@ -29,12 +29,12 @@ class Profile extends Component {
         })
     }
 
-
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         });
     };
+
     //Set state of Modal pop-up : true
     setModalTrue = () => {
         this.setState({
@@ -48,6 +48,7 @@ class Profile extends Component {
             modal: false,
         });
     };
+
     //update user
     updateUser = async (e, values) => {
         e.preventDefault();
@@ -58,60 +59,34 @@ class Profile extends Component {
         });
     };
 
-
     render(props) {
         return (
             <div>
-                <h1>Nice this is the profile page</h1>
-                <h2>Username: {this.state.username}</h2>
+
+                <h2>Welcome {this.state.username}!</h2>
                 <img src={this.state.image} alt="user icon" />
                 <p>Email: {this.state.email}</p>
                 <p>Member since: {this.state.created}</p>
                 <p>{this.state.bio}</p>
 
-                <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
-
                 <button onClick={() => this.setModalTrue()}>Edit Profile</button>
                 <Modal isOpen={this.state.modal}>
                     <form onSubmit={(e) => this.updateUser(e, this.state)}>
                         <h1>Edit Profile</h1>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                        />{" "}
+                        <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleChange} />
                         <br></br>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                        />
+                        <input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange} />
                         <br></br>
-                        <input
-                            type="text"
-                            name="image"
-                            placeholder="image"
-                            value={this.state.image}
-                            onChange={this.handleChange}
-                        />
+                        <input type="text" name="image" placeholder="image" value={this.state.image} onChange={this.handleChange} />
                         <br></br>
-                        <input
-                            type="text"
-                            name="bio"
-                            placeholder="bio"
-                            value={this.state.bio}
-                            onChange={this.handleChange}
-                        />
+                        <input type="text" name="bio" placeholder="bio" value={this.state.bio} onChange={this.handleChange} />
                         <br></br>
                         <input type="submit" value="Accept Changes" />
                     </form>
-
                     <button onClick={() => this.setModalFalse()}>Return</button>
                 </Modal>
+
+                <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
 
                 {this.state.posts ? (<UserPosts posts={this.state.posts} />) : (<h3>Head over to the posts section to begin having fun</h3>)}
 

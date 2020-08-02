@@ -17,13 +17,11 @@ class SignIn extends Component {
     render() {
         return (
             <div>
-                <h2>Login</h2>
-
+                <h2>Sign In</h2>
                 <form onSubmit={(e) => this.props.handleSubmit(e, this.state)}>
-
                     <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
                     <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Sign In" />
                 </form>
             </div>
         )

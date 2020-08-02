@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { callGamespot } from "../../Service/api_helper";
 import moment from 'moment';
 
-
-import { callGamespot } from "../../Service/api_helper";
+//Custom components
 import ShowNews from './ShowNews';
 
 class News extends Component {
@@ -10,10 +10,9 @@ class News extends Component {
         super(props);
         this.state = {
             news: [],
-            currentTime: ''
         }
     }
-
+    //fetching current and previous dates to pass on to Gamespot call
     async componentDidMount() {
         const yesterday = await moment().subtract(1, 'days').format("YYYY-MM-DD")
         const today = await moment().format("YYYY-MM-DD")
@@ -22,9 +21,6 @@ class News extends Component {
             news,
         })
     }
-
-
-
 
     render(props) {
         return (
