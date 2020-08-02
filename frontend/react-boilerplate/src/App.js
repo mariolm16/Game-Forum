@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({
       currentUser: currentUser
     });
-    this.props.history.push(`/`);
+    this.props.history.push(`/home`);
   };
 
   //sign in function
@@ -50,7 +50,7 @@ class App extends Component {
       modal2: false,
       currentUser: currentUser
     })
-    this.props.history.push('/profile');
+    this.props.history.push('/home');
   }
 
   //Signout function 
@@ -59,7 +59,7 @@ class App extends Component {
       currentUser: null
     })
     localStorage.removeItem('authToken');
-    this.props.history.push('/');
+    this.props.history.push('/home');
   }
 
 
@@ -100,7 +100,7 @@ class App extends Component {
       currentUser: null
     })
     localStorage.removeItem('authToken');
-    this.props.history.push('/');
+    this.props.history.push('/home');
   }
 
   render() {
@@ -109,7 +109,7 @@ class App extends Component {
       <div>
         <header>
           <h1>GAME ZONE</h1>
-          <Link to={"/"}>
+          <Link to={"/home"}>
             <button>Home</button>
           </Link>
 
@@ -152,7 +152,7 @@ class App extends Component {
 
         <Route exact path='/posts' render={(props) => { return (<Posts user={this.state.currentUser} />) }} />
 
-        <News />
+        <Route exact path='/home' render={(props) => { return (<News />) }} />
       </div>
     );
   }

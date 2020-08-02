@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 
 import { callGamespot } from "../../Service/api_helper";
+import ShowNews from './ShowNews';
 
 class News extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            news: {}
+            news: [],
+            currentTime: ''
         }
     }
 
     async componentDidMount() {
-        const news = await callGamespot();
+        const yesterday = await moment().subtract(1, 'days').format("YYYY-MM-DD")
+        const today = await moment().format("YYYY-MM-DD")
+        const news = await callGamespot(yesterday, today);
         this.setState({
-            news
+            news,
         })
     }
+
+
+
 
     render(props) {
         return (
             <div>
-                <h1>I am the news Component</h1>
-                <img src="https://upload.wikimedia.org/wikipedia/en/4/4f/Under_construction.JPG" alt="construction" />
+                {this.state.news ? (<ShowNews newsSingle={this.state.news} />) : (<p>Loading....</p>)}
                 <p>News provided by Gamespot.com</p>
             </div>
         )

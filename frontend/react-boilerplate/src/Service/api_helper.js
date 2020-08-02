@@ -124,8 +124,8 @@ export const deleteReply = async (id) => {
   console.log(deletedReply)
 }
 //Call gamespot
-export const callGamespot = async () => {
-  const allNews = await axios.get('https://cors-anywhere.herokuapp.com/https://www.gamespot.com/api/articles/?format=json&filter=publish_date:2020-07-15%7C2020-08-01&videos_api_url&site_detail_url&image&limit=50&deck&api_key=1d6138950310ca804812b2649e6d4a2c1ed2f7e2', { headers: { 'Mario-Project': 'YOUR-SERVICE-NAME' } })
+export const callGamespot = async (yesterday, today) => {
+  const allNews = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.gamespot.com/api/articles/?format=json&filter=publish_date:${yesterday}%7C${today},categories:18&limit=20&api_key=1d6138950310ca804812b2649e6d4a2c1ed2f7e2`, { headers: { 'Mario-Project': 'YOUR-SERVICE-NAME' } })
   console.log(allNews.data.results);
   return allNews.data.results;
 }
