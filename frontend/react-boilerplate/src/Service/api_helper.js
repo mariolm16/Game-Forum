@@ -93,7 +93,7 @@ export const destroyComment = async (id) => {
 
 //Get Comment Replies
 export const fetchReply = async (id) => {
-  const allReplies = await api.get(`/comment/reply/${id}`)
+  const allReplies = await api.get(`/comment/all/reply/${id}`)
   console.log(allReplies.data)
   return allReplies.data
 }

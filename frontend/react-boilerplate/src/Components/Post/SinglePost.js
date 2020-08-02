@@ -39,7 +39,7 @@ class SinglePost extends Component {
     //Delete a reply
     deleteReply = async (id) => {
         await deleteReply(id);
-        this.props.getPost(this.props.post._id)
+        this.getReply(this.state.commentId)
     }
 
     render() {
