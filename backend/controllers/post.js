@@ -49,9 +49,7 @@ const allPosts = (req, res) => {
 const deletePost = (req, res) => {
   const userId = req.user.id;
   Post.findById(req.params.id).then((foundPost) => {
-    console.log(foundPost);
     const creator = foundPost._creator.toString();
-
     if (userId === creator) {
       Post.findByIdAndRemove(req.params.id, (err, deletedPost) => {
         if (err) {
@@ -66,13 +64,9 @@ const deletePost = (req, res) => {
 };
 
 const editPost = (req, res) => {
-  console.log(req.user);
   const userId = req.user.id;
   Post.findById(req.params.id).then((foundPost) => {
-    console.log(foundPost);
     const creator = foundPost._creator.toString();
-
-    console.log(userId, creator);
     if (userId === creator) {
       Post.findByIdAndUpdate(
         req.params.id,

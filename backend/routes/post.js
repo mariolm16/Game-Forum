@@ -3,7 +3,6 @@ const router = express.Router();
 const ctrl = require("../controllers");
 
 router.get("/", ctrl.post.allPosts);
-
 router.get("/:id", ctrl.post.showPost);
 router.post("/new", ctrl.post.createPost);
 router.delete("/:id", ctrl.post.deletePost);

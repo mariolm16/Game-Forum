@@ -1,7 +1,6 @@
 const Reply = require('../models').Reply
 const Comment = require('../models').Comment
 
-
 //Create a comment
 const createReply = (req, res) => {
     Comment.findById(req.params.comment, (err, foundComment) => {
@@ -10,13 +9,11 @@ const createReply = (req, res) => {
         }
         req.body.reply = req.body.body
         req.body.username = req.user.username
-
         Reply.create(req.body, (err, newReply) => {
             if (err) {
                 return res.status(500).json(err);
             }
             foundComment.reply.push(newReply)
-
             foundComment.save((err, savedPost) => {
                 if (err) {
                     return res.status(500).json(err);
@@ -29,13 +26,10 @@ const createReply = (req, res) => {
 
 //Delete a comment
 const deleteReply = (req, res) => {
-    console.log(req.user);
 
     Reply.findById(req.params.id).then((foundReply) => {
         const user = req.user.username;
         const creator = foundReply.username.toString();
-        console.log(user === creator)
-
         if (user === creator) {
             Reply.findByIdAndRemove(req.params.id, (err, deletedReply) => {
                 if (err) {
@@ -50,7 +44,6 @@ const deleteReply = (req, res) => {
 
 //Get reply by ID
 const getReply = (req, res) => {
-    console.log(req.params.id)
     Reply.findById(req.params.id)
         .exec((err, foundReplies) => {
             if (err) {

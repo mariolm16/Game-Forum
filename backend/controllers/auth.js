@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const signup = (req, res) => {
-  console.log(req.body)
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
       return res.status(500).json(err);
@@ -70,19 +69,17 @@ const login = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send(`ERROR: internal server error: ${err}`);
+      res.status(500).send(`Internal server error: ${err}`);
     });
 };
 
 const verifyUser = (req, res) => {
-  console.log(req.user)
   User.findById(req.user.id)
-
     .then((foundUser) => {
       res.status(200).json(foundUser);
     })
     .catch((err) => {
-      res.status(500).send(`ERROR: oh no`);
+      res.status(500).send(`Internal server error`);
     });
 };
 

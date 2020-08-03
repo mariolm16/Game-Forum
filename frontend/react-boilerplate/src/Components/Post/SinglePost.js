@@ -43,7 +43,6 @@ class SinglePost extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <h1>{this.props.post.title}</h1>

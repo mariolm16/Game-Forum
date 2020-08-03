@@ -2,7 +2,6 @@ const User = require("../models").User;
 const Post = require("../models").Post;
 
 const showUser = (req, res) => {
-  console.log(req.user)
   User.findById(req.user.id)
     .populate("_posts", "title")
     .exec((err, foundUser) => {
@@ -23,7 +22,6 @@ const allUsers = (req, res) => {
 };
 
 const deleteUser = (req, res) => {
-  console.log(req.user)
   User.findByIdAndRemove(req.user.id, (err, deletedUser) => {
     if (err) {
       return res.status(500).json(err);
