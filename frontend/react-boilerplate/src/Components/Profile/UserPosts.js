@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { retPost } from '../../Service/api_helper'
 
+import '../../Css/Profile.css'
+
 class UserPosts extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +27,7 @@ class UserPosts extends Component {
             </li>
         )
         return (
-            <div>
+            <div className="singlePost">
                 <h3>Your Posts</h3>
                 <ul>
                     {posts}

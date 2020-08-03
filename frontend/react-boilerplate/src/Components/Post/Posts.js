@@ -8,7 +8,7 @@ import { getPosts, createPost, retPost, destroyPost, makeComment, destroyComment
 import Comment from './Comment';
 import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
-import "../../Css/Post.css"
+
 
 class Posts extends Component {
     constructor(props) {

@@ -1,0 +1,91 @@
+.profileMain {
+    background-color: cornflowerblue;
+    color: #F1FAEE;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("https://images.pexels.com/photos/2110357/pexels-photo-2110357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+.userInfo {
+    background-color:#E63946;
+    width: 45%;
+    margin: 5px;
+    border:#1D3557 solid 2px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    opacity: .95;
+    margin-left: 5px;
+    height: 50%;
+}
+
+.userInfo h2 {
+    text-align: center;
+    text-decoration: #1D3557 underline;
+}
+
+.userInfo img {
+    max-width:90%;
+    height: auto;
+    margin-left: 5%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5px;
+}
+
+.userInfo p {
+    margin: 10px;
+}
+
+.userInfo button {
+    display: inline-block;
+    margin: 10px;
+}
+
+.userPosts {
+    background-color:#1D3557;
+    width: 45%;
+    margin: 5px;
+    border:#1D3557 solid 2px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    opacity: .95;
+}
+
+.singlePost {
+    width: 90%;
+    margin: auto;
+}
+
+.singlePost h3 {
+    text-align: center;
+}
+
+.singlePost ul {
+    list-style: none;
+    border-bottom: #F1FAEE 2px solid;
+}
+
+.singlePost img {
+    max-width:90%;
+    height: auto;
+    margin-left: 5%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5px;
+    opacity: 1.00;
+}
+
+form {
+   
+    
+}
+
+.editForm {
+    background-color: darkkhaki;
+    margin-top: 15%;
+    text-align: center;
+    height: 50vh;
+    background-image: url("https://images.pexels.com/photos/2416973/pexels-photo-2416973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-position: center;
+    color: #F1FAEE;
+    border-radius: 10px;
+    box-shadow: 15px 15px 10px 0px rgba(0,0,0,0.75);
+}

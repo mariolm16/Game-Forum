@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Modal from "react-modal";
 import { withRouter } from "react-router-dom";
-
 import { putProfile, findPosts } from '../../Service/api_helper'
 
+//Custom imports
 import UserPosts from './UserPosts';
+import '../../Css/Profile.css'
+
 
 class Profile extends Component {
     constructor(props) {
@@ -61,16 +63,20 @@ class Profile extends Component {
 
     render(props) {
         return (
-            <div>
+            <div className="profileMain">
 
-                <h2>Welcome {this.state.username}!</h2>
-                <img src={this.state.image} alt="user icon" />
-                <p>Email: {this.state.email}</p>
-                <p>Member since: {this.state.created}</p>
-                <p>{this.state.bio}</p>
+                <div className="userInfo">
+                    <h2>Welcome {this.state.username}!</h2>
+                    <img src={this.state.image} alt="user icon" />
+                    <p>Email: {this.state.email}</p>
+                    <p>Member since: {this.state.created}</p>
+                    <p>{this.state.bio}</p>
+                    <button onClick={() => this.setModalTrue()}>Edit Profile</button>
+                    <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
 
-                <button onClick={() => this.setModalTrue()}>Edit Profile</button>
-                <Modal isOpen={this.state.modal}>
+                </div>
+
+                <Modal className="editForm" isOpen={this.state.modal}>
                     <form onSubmit={(e) => this.updateUser(e, this.state)}>
                         <h1>Edit Profile</h1>
                         <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleChange} />
@@ -83,13 +89,11 @@ class Profile extends Component {
                         <br></br>
                         <input type="submit" value="Accept Changes" />
                     </form>
-                    <button onClick={() => this.setModalFalse()}>Return</button>
+                    <button onClick={() => this.setModalFalse()}> Close</button>
                 </Modal>
-
-                <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
-
-                {this.state.posts ? (<UserPosts posts={this.state.posts} />) : (<h3>Head over to the posts section to begin having fun</h3>)}
-
+                <div className="userPosts">
+                    {this.state.posts ? (<UserPosts posts={this.state.posts} />) : (<h3>Head over to the posts section to begin having fun</h3>)}
+                </div>
             </div>
         )
     }

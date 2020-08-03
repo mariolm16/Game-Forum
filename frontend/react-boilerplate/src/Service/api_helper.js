@@ -114,6 +114,6 @@ export const deleteReply = async (id) => {
 
 //Call gamespot API - fetching daily news
 export const callGamespot = async (yesterday, today) => {
-  const allNews = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.gamespot.com/api/articles/?format=json&filter=publish_date:${yesterday}%7C${today},categories:18&limit=20&api_key=1d6138950310ca804812b2649e6d4a2c1ed2f7e2`, { headers: { 'Mario-Project': 'YOUR-SERVICE-NAME' } })
+  const allNews = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.gamespot.com/api/articles/?format=json&filter=publish_date:${yesterday}%7C${today},categories:18&limit=24&api_key=1d6138950310ca804812b2649e6d4a2c1ed2f7e2`, { headers: { 'Mario-Project': 'YOUR-SERVICE-NAME' } })
   return allNews.data.results;
 }
