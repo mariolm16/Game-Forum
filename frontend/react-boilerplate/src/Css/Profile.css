@@ -5,14 +5,14 @@
 }
 
 .userInfo {
-    background-color:#E63946;
+    background-color:#1D3557;
     width: 45%;
     margin: 5px;
     border:#1D3557 solid 2px;
     border-radius: 5px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     opacity: .95;
-    margin-left: 5px;
+    margin-left: 25px;
     height: 50%;
 }
 
@@ -39,13 +39,14 @@
 }
 
 .userPosts {
-    background-color:#1D3557;
+    background-color:#E63946;
     width: 45%;
     margin: 5px;
     border:#1D3557 solid 2px;
     border-radius: 5px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     opacity: .95;
+    margin-left: 25px;
 }
 
 .singlePost {

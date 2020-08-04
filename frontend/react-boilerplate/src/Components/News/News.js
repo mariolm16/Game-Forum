@@ -15,18 +15,19 @@ class News extends Component {
         }
     }
     // fetching current and previous dates to pass on to Gamespot call
-    // async componentDidMount() {
-    //     const yesterday = await moment().subtract(1, 'days').format("YYYY-MM-DD")
-    //     const today = await moment().format("YYYY-MM-DD")
-    //     const news = await callGamespot(yesterday, today);
-    //     this.setState({
-    //         news,
-    //     })
-    // }
+    async componentDidMount() {
+        const yesterday = await moment().subtract(1, 'days').format("YYYY-MM-DD")
+        const today = await moment().format("YYYY-MM-DD")
+        const news = await callGamespot(yesterday, today);
+        this.setState({
+            news,
+        })
+    }
 
     render(props) {
         return (
             <div className="newsComp">
+                <h2 className="today">Today's Breaking News</h2>
                 {this.state.news ? (<ShowNews newsSingle={this.state.news} />) : (<p>Loading....</p>)}
                 <p>News provided by Gamespot</p>
             </div>

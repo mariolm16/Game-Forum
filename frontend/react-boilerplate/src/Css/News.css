@@ -5,6 +5,11 @@
     
 }
 
+.today {
+    color: #F1FAEE; 
+    text-align: center;
+    font-size: 30px;
+}
 .newsComp p {
     color: #F1FAEE;
     text-align: center;
@@ -14,13 +19,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-   
+   margin-left:50px;
 }
 
 .singleNews {
     background-color:#1D3557;
-    max-width:300px;
-    max-height: 550px;
+    max-width:315px;
+    max-height: 600px;
     margin: 10px;
     padding: 10px;
     border:black solid 2px;
@@ -38,6 +43,14 @@
     border: black solid 2px;
     border-radius: 2%;
     box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.75);
+}
+
+.newsInfo {
+    background-color:#31587A;
+    border-radius: 3%;
+    border: black solid 2px;
+    margin-top: 10px;
+    padding:3px;
 }
 
 .singleNews p {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import Modal from "react-modal";
 
-
 //Custom Imports
 import SignUp from "./Components/User/SignUp";
 import SignIn from './Components/User/SignIn';

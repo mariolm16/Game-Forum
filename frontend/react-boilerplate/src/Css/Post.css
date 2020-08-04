@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.createComment {
+.createPost {
     background-color: #1D3557;
     width: 45vw;
     align-self: center;
@@ -34,7 +34,7 @@
 }
 
 .allPosts{
-    margin-left:25px;
+    margin-left:50px ;
     margin-top:15px;
     background-color: #1D3557;
     color:#F1FAEE;
@@ -46,7 +46,7 @@
 }
 
 .allPosts img {
-    max-width:250px;
+    max-width:350px;
     height: auto;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     border-radius: 5px;
@@ -60,11 +60,16 @@
     background-image: url("https://images.pexels.com/photos/1293269/pexels-photo-1293269.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
-.createPost {
-    background-color: thistle;
-    height: 55px;
+.createComment {
+    background-color:#1D3557;
+    height: 50px;
     text-align: center;
-    width: 250px;
+    width: 35vw;
+    margin-left:15vw;
+    margin-top: 15px;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    display: inline-block;
 }
 
 .singPostCont {
@@ -79,7 +84,7 @@
 .singPost {
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
     border-radius: 10px;
-    width: 75vw;
+    width: 70vw;
     padding: 2px;
     background-color: #1D3557;
 }
@@ -88,7 +93,10 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 350px;
+    width: 450px;
+    border: 3px solid #F1FAEE;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 5px #E63946;
 }
 
 .singPost h1 {
@@ -101,9 +109,10 @@
 
 .replyTop {
     margin-top: 10px;
-    margin-left: 20px;
+    
     border-bottom: #F1FAEE solid 2px;
     width: 35vw;
+    height: auto;
     background-color: #31587A;
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
     border-radius: 10px;
@@ -116,11 +125,8 @@
 }
 
 .replyForm {
-  /* position: relative; */
   background-color: #E63946;
-  /* bottom:50%;
-  left:40%; */
-  border: 2px solid #E63946;
+  border: 2px solid #1D3557;
   width: 35vw;
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
     border-radius: 10px;

@@ -32,9 +32,8 @@ class UserPosts extends Component {
                 <ul>
                     {posts}
                 </ul>
-
                 <h3>{this.state.singlePost.title}</h3>
-                <img src={this.state.singlePost.image} alt="postpic" />
+                <img src={this.state.singlePost.image} />
                 <p>{this.state.singlePost.body}</p>
             </div>
         )

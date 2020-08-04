@@ -12,10 +12,11 @@ function ShowNews(props) {
                     <div className="singleNews">
                         <a target="_blank" href={news.site_detail_url}><h3>{news.title}</h3></a>
                         <img src={news.image.square_small} alt="game" />
-                        <h3>{news.lede}</h3>
-                        <p>By {news.authors}</p>
+                        <div className="newsInfo">
+                            <h3>{news.lede}</h3>
+                            <p>By {news.authors}</p>
+                        </div>
                     </div>
-
                 )
             })}
         </div>

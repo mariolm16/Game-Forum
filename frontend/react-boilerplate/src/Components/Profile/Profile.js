@@ -73,9 +73,7 @@ class Profile extends Component {
                     <p>{this.state.bio}</p>
                     <button onClick={() => this.setModalTrue()}>Edit Profile</button>
                     <button onClick={() => this.props.deleteUser()}>Delete Profile</button>
-
                 </div>
-
                 <Modal className="editForm" isOpen={this.state.modal}>
                     <form onSubmit={(e) => this.updateUser(e, this.state)}>
                         <h1>Edit Profile</h1>

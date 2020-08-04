@@ -3,6 +3,7 @@
   height: 100vh;
   background-image: url("https://images.pexels.com/photos/2110357/pexels-photo-2110357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
+
 header {
   background-color: #1D3557;
   display: flex;
@@ -10,12 +11,11 @@ header {
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
-  background-image: url("https://images.pexels.com/photos/2416973/pexels-photo-2416973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=940");
-  
+  background-image: url("https://images.pexels.com/photos/2416973/pexels-photo-2416973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=940"); 
 }
 
 .title {
-  margin-left: 25px;
+  margin-left: 50px;
 color: #F1FAEE;
 background-color: #E63946;
 opacity: .90;
@@ -42,7 +42,7 @@ margin-left: 75px;
 }
 
 .signButton {
- margin-right: 20px;
+ margin-right: 50px;
 }
 
 .signButton button:hover, .homeButton button:hover {

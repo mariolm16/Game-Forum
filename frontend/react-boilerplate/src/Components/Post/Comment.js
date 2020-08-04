@@ -19,7 +19,7 @@ class Comment extends Component {
 
     render(props) {
         return (
-            <div className="createPost">
+            <div className="createComment">
                 <form onSubmit={(e) => this.props.handleSubmit(e, this.state.body)}>
                     <input type="text" name="body" placeholder="body" onChange={this.handleChange} />
                     <input type="submit" value="Comment" />

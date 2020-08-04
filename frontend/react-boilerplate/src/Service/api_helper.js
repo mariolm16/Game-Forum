@@ -45,7 +45,7 @@ export const deleteUser = async (_id) => {
 //Get user posts
 export const findPosts = async (id) => {
   const userPosts = await api.get('/user/profile', id)
-  if (userPosts) {
+  if (userPosts.data && userPosts.data._posts) {
     return userPosts.data._posts
   } else {
     return []
@@ -73,7 +73,6 @@ export const retPost = async (id) => {
 //Delete post
 export const destroyPost = async (id) => {
   const deletedPost = await api.delete(`/post/${id}`)
-  console.log(deletedPost)
   return deletedPost.data
 }
 
@@ -99,7 +98,6 @@ export const destroyComment = async (id) => {
 //Get Comment Replies
 export const fetchReply = async (id) => {
   const allReplies = await api.get(`/comment/all/reply/${id}`)
-  console.log(allReplies.data)
   return allReplies.data
 }
 

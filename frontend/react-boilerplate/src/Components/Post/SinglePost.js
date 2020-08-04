@@ -15,6 +15,7 @@ class SinglePost extends Component {
             commentId: ''
         }
     }
+
     // get comment reply by id
     getReply = async (id) => {
         const reply = await fetchReply(id)
@@ -24,7 +25,6 @@ class SinglePost extends Component {
             modal: true
         })
     }
-
 
     //Create Reply
     createReply = async (e, id, body) => {
@@ -58,7 +58,6 @@ class SinglePost extends Component {
                 <div className="commentsInfo">
                     <div>
                         {this.props.post._comments.map((comment, _id) => {
-
                             return (
                                 <div key={_id} className="replyTop">
                                     <h3>Comment: {comment.body}</h3>
@@ -67,9 +66,7 @@ class SinglePost extends Component {
                                     <button onClick={() => this.getReply(comment._id)}>See replies!</button>
                                     <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
                                 </div>
-
                             )
-
                         })}
                     </div>
                     <div>
