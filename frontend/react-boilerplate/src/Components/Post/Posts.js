@@ -25,8 +25,8 @@ class Posts extends Component {
     }
 
     async componentDidMount() {
-        const allPosts = await getPosts();
         const currentUser = await this.props.user
+        const allPosts = await getPosts();
         this.setState({
             allPosts,
             user: currentUser
@@ -93,7 +93,7 @@ class Posts extends Component {
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
                     {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} getPost={this.getPost} />) : (<p>Loading...</p>)}
-                    {this.state.user ? (<Comment postId={this.state.singlePost} handleSubmit={this.createComment} />) : (<h2 class="message">Sign in to join the conversation</h2>)}
+                    {this.state.user ? (<Comment postId={this.state.singlePost} handleSubmit={this.createComment} />) : (<h2 class="message2">Sign in to join the conversation</h2>)}
 
                 </Modal>
 

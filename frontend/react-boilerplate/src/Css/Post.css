@@ -1,6 +1,6 @@
 .postTop {
-    background-image: url("https://images.pexels.com/photos/1293261/pexels-photo-1293261.jpeg?auto=compress&cs=tinysrgb&h=1920&w=2399");
     background-position: center;
+    object-fit: cover;
     display: flex;
     flex-direction: column;
 }
@@ -27,6 +27,16 @@
     display: inline-block;
 }
 
+.message2 {
+    background-color: #E63946;
+   margin-left: 15%;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px;
+    opacity: .95;
+    display: inline-block;
+}
+
 .postMid {
     display: flex;
     flex-direction: row;
@@ -34,12 +44,13 @@
 }
 
 .allPosts{
-    margin-left:50px ;
+    margin-left:15px ;
     margin-top:15px;
     background-color: #1D3557;
     color:#F1FAEE;
-    max-width: 450px;
-    padding: 15px;
+    text-decoration: underline;
+    max-width: 350px;
+    padding: 10px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -93,7 +104,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 450px;
+    max-width: 600px;
     border: 3px solid #F1FAEE;
     border-radius: 10px;
     box-shadow: 2px 2px 5px 5px #E63946;
