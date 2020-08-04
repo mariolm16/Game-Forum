@@ -11,7 +11,7 @@ class SignUp extends Component {
       name: "",
       username: "",
       email: "",
-      image: "",
+      image: "https://cdn.icon-icons.com/icons2/1379/PNG/512/folderredgames_93152.png",
       password: "",
     };
   }

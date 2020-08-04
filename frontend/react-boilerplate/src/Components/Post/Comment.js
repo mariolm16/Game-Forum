@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "../../Css/Post.css"
+
 class Comment extends Component {
     constructor(props) {
         super(props);

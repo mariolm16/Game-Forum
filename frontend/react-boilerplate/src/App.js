@@ -107,7 +107,7 @@ class App extends Component {
     return (
       <div className="top">
         <header>
-          <h1 className="title">GAME ZONE</h1>
+          <h1 className="title">Gamer Corner</h1>
           <div className="homeButton">
             <Link to={"/home"}><button>Home</button></Link>
             <Link to={"/posts"}><button>Posts</button></Link>

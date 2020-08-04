@@ -9,6 +9,7 @@ import Comment from './Comment';
 import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
 
+import "../../Css/Post.css"
 
 class Posts extends Component {
     constructor(props) {
@@ -85,23 +86,22 @@ class Posts extends Component {
 
     render() {
         return (
-            <div>
+            <div className="postTop">
                 <Modal className="postModal" isOpen={this.state.modal}>
                     <button onClick={() => this.setModalFalse()}> Close</button>
-                    <Comment postId={this.state.singlePost} handleSubmit={this.createComment} />
                     {this.state.singlePost ? (<SinglePost closeModal={this.setModalFalse} deleteComment={this.deleteComment} post={this.state.singlePost} getPost={this.getPost} />) : (<p>Loading...</p>)}
+                    {this.state.user ? (<Comment postId={this.state.singlePost} handleSubmit={this.createComment} />) : (<h2 class="message">Sign in to join the conversation</h2>)}
+
                 </Modal>
 
-                {this.state.user ? (<CreatePost handleSubmit={this.createPost} />) : (<h3>Sign in to join the conversation</h3>)}
+                {this.state.user ? (<CreatePost handleSubmit={this.createPost} />) : (<h2 class="message">Sign in to join the conversation</h2>)}
 
-                <div className="allPosts">
+                <div className="postMid">
                     {this.state.allPosts.map((post, _id) => {
                         return (
-                            <div key={_id}>
-                                <h2>{post.title}</h2>
+                            <div className="allPosts" key={_id}>
                                 <img src={post.image} alt="post" />
-                                <p>{post.created}</p>
-
+                                <h2>{post.title}</h2>
                                 <button onClick={() => this.getPost(post._id)}>See more</button>
 
                                 {this.state.user && <button onClick={() => this.deletePost(post._id)}>Delete Post</button>}

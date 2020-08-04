@@ -5,6 +5,8 @@ import { fetchReply, createReply, deleteReply } from "../../Service/api_helper";
 //custom imports
 import Reply from './Reply';
 
+import "../../Css/Post.css"
+
 class SinglePost extends Component {
     constructor() {
         super()
@@ -44,25 +46,32 @@ class SinglePost extends Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.props.post.title}</h1>
-                <img src={this.props.post.image} alt="post icon" />
-                <h3>Post created by: {this.props.post._creator.username}</h3>
-                <p>{this.props.post.body}</p>
-                <p>Created: {this.props.post.created}</p>
+            <div className="singPostCont">
+
+                <div className="singPost">
+                    <h1>{this.props.post.title}</h1>
+                    <img src={this.props.post.image} alt="post icon" />
+                    <h2>{this.props.post.body}</h2>
+                    <p>Post created by: {this.props.post._creator.username}</p>
+                    <p>Created: {this.props.post.created}</p>
+                </div>
 
                 {this.props.post._comments.map((comment, _id) => {
                     return (
-                        <div key={_id}>
+                        <div key={_id} className="replyTop">
                             <h3>Comment: {comment.body}</h3>
                             <p>Comment by: {comment.username}</p>
                             <p>Created: {comment.created}</p>
                             <button onClick={() => this.getReply(comment._id)}>See replies!</button>
                             <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
                         </div>
+
                     )
+
                 })}
                 {this.state.replies ? (<Reply replies={this.state.replies} id={this.state.commentId} handleSubmit={this.createReply} handleDelete={this.deleteReply} />) : (<p>No replies yet</p>)}
+
+
             </div>
         )
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "../../Css/Post.css"
+
 class CreatePost extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,7 @@ class CreatePost extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="createComment">
                 <h3>Create a post!</h3>
                 <form onSubmit={(e) => this.props.handleSubmit(e, this.state)}>
                     <input type="text" name="title" placeholder="title" onChange={this.handleChange} />

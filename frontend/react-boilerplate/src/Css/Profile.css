@@ -1,9 +1,7 @@
 .profileMain {
-    background-color: cornflowerblue;
     color: #F1FAEE;
     display: flex;
     flex-wrap: wrap;
-    background-image: url("https://images.pexels.com/photos/2110357/pexels-photo-2110357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 .userInfo {
@@ -71,11 +69,6 @@
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     border-radius: 5px;
     opacity: 1.00;
-}
-
-form {
-   
-    
 }
 
 .editForm {
