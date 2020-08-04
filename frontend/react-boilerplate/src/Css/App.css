@@ -10,10 +10,12 @@ header {
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
-background-image: url("https://images.pexels.com/photos/2416973/pexels-photo-2416973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=940");
+  background-image: url("https://images.pexels.com/photos/2416973/pexels-photo-2416973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=940");
+  
 }
 
 .title {
+  margin-left: 25px;
 color: #F1FAEE;
 background-color: #E63946;
 opacity: .90;

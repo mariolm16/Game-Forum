@@ -73,6 +73,7 @@
     flex-direction: column;
     align-content: center;
     color:#F1FAEE ;
+    height: auto;
 }
 
 .singPost {
@@ -115,14 +116,19 @@
 }
 
 .replyForm {
-  position: relative;
+  /* position: relative; */
   background-color: #E63946;
-  bottom:875px;
-  left:40%;
+  /* bottom:50%;
+  left:40%; */
   border: 2px solid #E63946;
   width: 35vw;
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
     border-radius: 10px;
     margin: 10px;
+}
+
+.commentsInfo {
+    display: flex;
+    flex-direction: row;
 }
 

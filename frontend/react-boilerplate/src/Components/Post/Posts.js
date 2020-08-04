@@ -63,7 +63,10 @@ class Posts extends Component {
     //delete post if user signed on and owns post
     deletePost = async (id) => {
         await destroyPost(id)
-        this.props.history.push(`/posts`);
+        const allPosts = await getPosts();
+        this.setState({
+            allPosts
+        })
     }
 
     //create comment

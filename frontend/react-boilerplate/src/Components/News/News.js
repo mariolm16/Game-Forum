@@ -14,7 +14,7 @@ class News extends Component {
             news: [],
         }
     }
-    //fetching current and previous dates to pass on to Gamespot call
+    // fetching current and previous dates to pass on to Gamespot call
     // async componentDidMount() {
     //     const yesterday = await moment().subtract(1, 'days').format("YYYY-MM-DD")
     //     const today = await moment().format("YYYY-MM-DD")

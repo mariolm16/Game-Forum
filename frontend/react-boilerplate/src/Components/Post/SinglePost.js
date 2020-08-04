@@ -55,23 +55,27 @@ class SinglePost extends Component {
                     <p>Post created by: {this.props.post._creator.username}</p>
                     <p>Created: {this.props.post.created}</p>
                 </div>
+                <div className="commentsInfo">
+                    <div>
+                        {this.props.post._comments.map((comment, _id) => {
 
-                {this.props.post._comments.map((comment, _id) => {
-                    return (
-                        <div key={_id} className="replyTop">
-                            <h3>Comment: {comment.body}</h3>
-                            <p>Comment by: {comment.username}</p>
-                            <p>Created: {comment.created}</p>
-                            <button onClick={() => this.getReply(comment._id)}>See replies!</button>
-                            <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
-                        </div>
+                            return (
+                                <div key={_id} className="replyTop">
+                                    <h3>Comment: {comment.body}</h3>
+                                    <p>Comment by: {comment.username}</p>
+                                    <p>Created: {comment.created}</p>
+                                    <button onClick={() => this.getReply(comment._id)}>See replies!</button>
+                                    <button onClick={() => this.props.deleteComment(comment._id)}>Delete Comment</button>
+                                </div>
 
-                    )
+                            )
 
-                })}
-                {this.state.replies ? (<Reply replies={this.state.replies} id={this.state.commentId} handleSubmit={this.createReply} handleDelete={this.deleteReply} />) : (<p>No replies yet</p>)}
-
-
+                        })}
+                    </div>
+                    <div>
+                        {this.state.replies ? (<Reply replies={this.state.replies} id={this.state.commentId} handleSubmit={this.createReply} handleDelete={this.deleteReply} />) : (<p>...</p>)}
+                    </div>
+                </div>
             </div>
         )
     }

@@ -20,7 +20,7 @@ class Profile extends Component {
             _id: props.user._id,
             bio: props.user.bio,
             modal: false,
-            posts: null
+            posts: []
         }
     }
 
