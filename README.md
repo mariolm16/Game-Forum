@@ -109,8 +109,8 @@ The challenge will come from implementing the 'nice to haves/ stretch'. Since I 
   * ],
 * });
 
-*const replySchema = mongoose.Schema({
-    *created: {
+*  const replySchema = mongoose.Schema({
+    * created: {
         *type: Date,
         *default: Date.now()
     *},
