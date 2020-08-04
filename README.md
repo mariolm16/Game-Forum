@@ -22,6 +22,6 @@ A user will be able to reply to comments
 **WireFrames**
 =========================================================================================================================================
 
-![Home]("Home.png")
-![Posts]("Posts.png")
-![Profile]("Profile.png")
+![Home]("https://github.com/mariolm16/Game-Forum/blob/master/Home.png")
+![Posts]("https://github.com/mariolm16/Game-Forum/blob/master/Posts.png")
+![Profile]("https://github.com/mariolm16/Game-Forum/blob/master/Profile.png")
