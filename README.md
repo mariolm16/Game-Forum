@@ -35,60 +35,60 @@ The challenge will come from implementing the 'nice to haves/ stretch'. Since I 
 ===================================================================================================================================
 
 * const userSchema = mongoose.Scehma({
-* name: {
-* type:String,
-* required: true
-* }
-* email: {
-* type:String
-* required: true
-* }
-* image: {
-* type: String
-* }
-* username: {
-* type: String, 
-* unique: true,
-* required: true
-* }
-* password:  {
-* type: String,
-* required: true,
-* minlength: 8,
-* }
-* created: {
-* type:Date.
-* default: Date.now()
-* }
-* bio: String,
-* posts: [{
-* type: mongoose.Scehma.ObjectId,
-* ref: 'Post'
-* }]
+  * name: {
+    * type:String,
+    * required: true
+    * }
+  * email: {
+    * type:String
+    * required: true
+    * }
+  * image: {
+    * type: String
+    * }
+  * username: {
+    * type: String, 
+    * unique: true,
+    * required: true
+    * }
+  * password:  {
+    * type: String,
+    * required: true,
+    * minlength: 8,
+    * }
+  * created: {
+    * type:Date.
+    * default: Date.now()
+    * }
+  * bio: String,
+  * posts: [{
+    * type: mongoose.Scehma.ObjectId,
+    * ref: 'Post'
+    * }]
 
 * const postSchema = mongoose.Scehma({
-* title: {
-* type: String,
-* required: true,
-* created: {
-* type:Date.
-* default: Date.now()
-* }
-* image: {
-* type: string,
-* default: IMAGE LINK HERE
-* }
-* body: {
-* type: String,
-* required: true
-* }
+  * title: {
+    * type: String,
+    * required: true,
+    * created: {
+  * type:Date.
+    * default: Date.now()
+    * }
+  * image: {
+    * type: string,
+    * default: IMAGE LINK HERE
+    * }
+  * body: {
+    * type: String,
+    * required: true
+    * }
 * })
 
 * const commentSchema = mongoose.Schema({
-* created: {
-* type: Date,
-* default: Date.now(),
-* },
+  * created: {
+    * type: Date,
+    * default: Date.now(),
+    * },
   * body: {
     * type: String,
     * required: true,
