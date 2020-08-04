@@ -19,6 +19,11 @@ A user will be able to leave comments on their own posts and posts belonging to 
 
 A user will be able to reply to comments
 
+** Public Trello**
+======================================================================
+https://trello.com/b/PhSIBdon/project-4
+
+
 **Feasability**
 ========================================================================
 The basic functionality will be simple to implement and the videogame third party api's will cause no issue (free and provide relevant data).
