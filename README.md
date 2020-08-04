@@ -34,80 +34,80 @@ The challenge will come from implementing the 'nice to haves/ stretch'. Since I 
 **ERD**
 ===================================================================================================================================
 
-*const userSchema = mongoose.Scehma({
-*name: {
-*type:String,
-*required: true
-*}
-*email: {
-*type:String
-*required: true
-*}
-*image: {
-*type: String
-*}
-*username: {
-*type: String, 
-*unique: true,
-*required: true
-*}
-*password:  {
-*type: String,
-*required: true,
-*minlength: 8,
-*}
-*created: {
-*type:Date.
-*default: Date.now()
-*}
-*bio: String,
-*posts: [{
-*type: mongoose.Scehma.ObjectId,
-*ref: 'Post'
-*}]
+* const userSchema = mongoose.Scehma({
+* name: {
+* type:String,
+* required: true
+* }
+* email: {
+* type:String
+* required: true
+* }
+* image: {
+* type: String
+* }
+* username: {
+* type: String, 
+* unique: true,
+* required: true
+* }
+* password:  {
+* type: String,
+* required: true,
+* minlength: 8,
+* }
+* created: {
+* type:Date.
+* default: Date.now()
+* }
+* bio: String,
+* posts: [{
+* type: mongoose.Scehma.ObjectId,
+* ref: 'Post'
+* }]
 
-*const postSchema = mongoose.Scehma({
-*title: {
-*type: String,
-*required: true,
-*created: {
-*type:Date.
-*default: Date.now()
-*}
-*image: {
-*type: string,
-*default: IMAGE LINK HERE
-*}
-*body: {
-*type: String,
-*required: true
-*}
-*})
+* const postSchema = mongoose.Scehma({
+* title: {
+* type: String,
+* required: true,
+* created: {
+* type:Date.
+* default: Date.now()
+* }
+* image: {
+* type: string,
+* default: IMAGE LINK HERE
+* }
+* body: {
+* type: String,
+* required: true
+* }
+* })
 
-*const commentSchema = mongoose.Schema({
-*created: {
-*type: Date,
-*default: Date.now(),
- *},
-  *body: {
-    *type: String,
-    *required: true,
-  *},
-  *username: {
-    *type: String,
-    *required: true,
-  *},
-  *author: {
-    *type: mongoose.Schema.ObjectId,
-    *ref: "User",
-  *},
-  *reply: [
-    *{
-      *type: mongoose.Schema.ObjectId,
-      *ref: "Reply"
-    *},
-  *],
-*});
+* const commentSchema = mongoose.Schema({
+* created: {
+* type: Date,
+* default: Date.now(),
+* },
+  * body: {
+    * type: String,
+    * required: true,
+  * },
+  * username: {
+    * type: String,
+    * required: true,
+  * },
+  * author: {
+    * type: mongoose.Schema.ObjectId,
+    * ref: "User",
+  * },
+  * reply: [
+    * {
+      * type: mongoose.Schema.ObjectId,
+      * ref: "Reply"
+    * },
+  * ],
+* });
 
 *const replySchema = mongoose.Schema({
     *created: {
@@ -121,18 +121,18 @@ The challenge will come from implementing the 'nice to haves/ stretch'. Since I 
     *username: {
         *type: String,
         *require: true
-    *},
-    *comment: {
-        *type: mongoose.Schema.ObjectId,
-        *ref: "Comment"
-    *}
-*})
+    * },
+    * comment: {
+        * type: mongoose.Schema.ObjectId,
+        * ref: "Comment"
+    * }
+* })
 
 ** Technology Used**
 ======================================================================
 
-*Mongoose/MongoDB
-*Node.js
-*React
-*Modal Package
-*Moment Package
+* Mongoose/MongoDB
+* Node.js
+* React
+* Modal Package
+* Moment Package
